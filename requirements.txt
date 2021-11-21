@@ -1,4 +1,5 @@
 conllu
+ipycytoscape
 ipympl
 jupyterlab
 jupytext
