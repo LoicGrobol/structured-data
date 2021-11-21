@@ -30,6 +30,34 @@ from IPython.display import display, Markdown
 
 ## Graphes et représentations
 
+## 😴 Exo 😴
+
+Écrire une fonction en Python qui étant donné un graphe $G$, donné sous la forme d'un ensemble de
+nœuds et d'un ensemble d'arêtes et un nœud $a$ de $G$, renvoie l'ensemble des voisins de $a$ dans
+$G$.
+
+
+```python
+from typing import Collection, Set
+
+def neighbours(nodes: Collection, edges: Collection, a) -> Set:
+    pass # À toi de jouer
+```
+
+Pour tester
+
+```python
+import unittest
+tester = unittest.TestCase()
+
+graph_nodes = {1, 2, 3, 4, 5, 6}
+graph_edges = {(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)}
+
+tester.assertEqual(neighbours(graph_nodes, graph_edges, 2), {1, 3})
+tester.assertEqual(neighbours(graph_nodes, graph_edges, 3), {2, 4, 5})
+tester.assertEqual(neighbours(graph_nodes, graph_edges, 6), set())
+```
+
 ## 🕸️ Exo 🕸️
 
 Écrire des fonctions en Python qui permettent de convertir des graphes non-orientés sur $\{1, …,
@@ -83,6 +111,61 @@ graph_list = [
 ]
 
 assert (edges_to_matrix(graph_edges) == graph_matrix).all()
-assert tester.assertEqual(matrix_to_list(graph_matrix), graph_list)
-assert tester.assertEqual(list_to_edges(graph_lists), graph_edges)
+tester.assertEqual(matrix_to_list(graph_matrix), graph_list)
+tester.assertEqual(list_to_edges(graph_lists), graph_edges)
 ```
+
+## Connexité
+
+## 🏝️ Exo 🏝️
+
+### Recherche de chemin
+
+Écrire une fonction en Python qui étant donné un graphe $G$ sur $\{1, …, n\}$, donné sous la forme
+de votre choix, et deux entiers $a$ et $b$ compris entre $1$ et $n$n détermine s'il existe un chemin
+entre $a$ et $b$ dans $G$.
+
+### Test de connexité
+
+Écrire une fonction en Python qui détermine si un graphe sur $\{1, …, n\}$, donné sous la forme de
+votre choix, est connexe.
+
+```python
+# Si le graphe est donné comme liste d'arêtes, il faut préciser n, sinon, ce n'est pas la peine
+def is_connex(graph, n: int) -> bool:
+    pass # À toi de coder
+```
+
+```python
+# On peut se servir des fonctions précédentes si on a choisi une autre représentation
+assert is_connex([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)], 5)
+assert not is_connex([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)], 6)
+assert not is_connex([(1, 2), (3, 4), (3, 5), (4, 5)], 5)
+```
+
+### Composantes connexes
+
+Écrire une fonction en Python qui étant donné un graphe sur $\{1, …, n\}$, donné sous la forme de
+votre choix, renvoie ses composantes connexes sous forme d'une liste de listes d'entiers.
+
+```python
+def connex_components(graph, n: int) -> List[List[int]]:
+    pass # À toi de coder
+```
+
+## Graphes particuliers
+
+## 🌳 Exo 🌳
+
+### Graphes complets
+
+Écrire des fonctions en Python qui déterminent si un graphe connexe donné est
+
+- Un graphe complet
+- Une étoile
+- Une chaîne
+- Un arbre
+
+### Forêts
+
+Écrire une fonction en Python qui détermine si un graphe connexe donné est une forêt.
