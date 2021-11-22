@@ -38,10 +38,21 @@ $G$.
 
 
 ```python
-from typing import Collection, Set
+from typing import Any, Collection, Set, Tuple
 
-def neighbours(nodes: Collection, edges: Collection, a) -> Set:
+def neighbours(nodes: Collection, edges: Collection[Tuple[Any, Any]], a) -> Set:
     pass # À toi de jouer
+```
+
+```python
+def neighbours(nodes: Collection, edges: Collection[Tuple[Any, Any]], a) -> Set:
+    res = []
+    for edge_start, edge_end in edges:
+        if a == edge_start:
+            res.append(edge_end)
+        elif a == edge_end:
+            res.append(edge_start)
+    return set(res)
 ```
 
 Pour tester
@@ -86,6 +97,32 @@ def list_to_edges(lst: Sequence[Sequence[int]]) -> Collection[Tuple[int, int]]:
 # Évidemment on peut choisir d'autres directions
 ```
 
+```python
+def edges_to_matrix(edges: Collection[Tuple[int, int]]) -> ArrayLike:
+    graph_size = max(n for e in edges for n in e)
+    res = np.zeros((graph_size, graph_size))
+    for edge_start, edge_end in edges:
+        res[edge_start-1, edge_end-1] = 1
+        res[edge_end-1, edge_start-1] = 1
+    return res
+
+def matrix_to_list(matrix: ArrayLike) -> Sequence[Sequence[int]]:
+    res = [[] for _ in range(matrix.shape[0])]
+    for i in range(matrix.shape[0]):
+        for j in range(matrix.shape[1]):
+            if matrix[i, j] == 1:
+                res[i].append(j+1)
+    return res
+
+def list_to_edges(lst: Sequence[Sequence[int]]) -> Collection[Tuple[int, int]]:
+    res = []
+    for i, neighbours in enumerate(lst, start=1):
+        for j in neighbours:
+            if j > i:
+                res.append((i, j))
+    return res
+```
+
 Pour tester
 
 ```python
@@ -104,7 +141,7 @@ graph_matrix = np.array(
 )
 graph_list = [
     [2],
-    [1, 2],
+    [1, 3],
     [2, 4, 5],
     [3, 5],
     [3, 4]
@@ -112,7 +149,7 @@ graph_list = [
 
 assert (edges_to_matrix(graph_edges) == graph_matrix).all()
 tester.assertEqual(matrix_to_list(graph_matrix), graph_list)
-tester.assertEqual(list_to_edges(graph_lists), graph_edges)
+tester.assertEqual(list_to_edges(graph_list), graph_edges)
 ```
 
 ## Chemins et connexité
@@ -122,8 +159,28 @@ tester.assertEqual(list_to_edges(graph_lists), graph_edges)
 ### Recherche de chemin
 
 Écrire une fonction en Python qui étant donné un graphe $G$ sur $\{1, …, n\}$, donné sous la forme
-de votre choix, et deux entiers $a$ et $b$ compris entre $1$ et $n$n détermine s'il existe un chemin
+de votre choix, et deux entiers $a$ et $b$ compris entre $1$ et $n$ détermine s'il existe un chemin
 entre $a$ et $b$ dans $G$.
+
+```python
+# Si le graphe est donné comme liste d'arêtes, il faut préciser n,
+# sinon, ce n'est pas la peine
+def has_path(graph, n: int, a: int, b: int) -> bool:
+    pass # À toi de coder
+```
+
+Pour tester
+
+```python
+graph = [(1, 2), (3, 4), (3, 5), (4, 5)]
+n = 5
+assert has_path(graph, n, 1, 2)
+assert has_path(graph, n, 2, 1)
+assert has_path(graph, n, 3, 5)
+assert not has_path(graph, n, 1, 3)
+assert not has_path(graph, n, 5, 2)
+assert not has_path(graph, 6, 1, 6)
+```
 
 ### Test de connexité
 
@@ -131,7 +188,6 @@ entre $a$ et $b$ dans $G$.
 votre choix, est connexe.
 
 ```python
-# Si le graphe est donné comme liste d'arêtes, il faut préciser n, sinon, ce n'est pas la peine
 def is_connex(graph, n: int) -> bool:
     pass # À toi de coder
 ```
@@ -146,7 +202,7 @@ assert not is_connex([(1, 2), (3, 4), (3, 5), (4, 5)], 5)
 ### Composantes connexes
 
 Écrire une fonction en Python qui étant donné un graphe sur $\{1, …, n\}$, donné sous la forme de
-votre choix, renvoie ses composantes connexes sous forme d'une liste de listes d'entiers.
+votre choix, renvoie ses composantes connexes maximales sous forme d'une liste de listes d'entiers.
 
 ```python
 def connex_components(graph, n: int) -> List[List[int]]:
