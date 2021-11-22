@@ -27,6 +27,11 @@ est indisponible.
 
 ### 2021-11-20 — Graphes et algorithmes d'exploration
 
+- [Slides Graphes et algorithmes
+  d'exploration](slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.html)
+  [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/web-interfaces/main?urlpath=tree/slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.md)
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
