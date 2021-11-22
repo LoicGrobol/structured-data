@@ -30,7 +30,7 @@ est indisponible.
 - [Slides Graphes et algorithmes
   d'exploration](slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.html)
   [![Launch in Binder
-  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/web-interfaces/main?urlpath=tree/slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.md)
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.md)
 
 ## Lire les slides en local
 
