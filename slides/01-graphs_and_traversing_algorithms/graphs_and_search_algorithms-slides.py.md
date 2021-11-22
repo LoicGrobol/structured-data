@@ -115,7 +115,7 @@ tester.assertEqual(matrix_to_list(graph_matrix), graph_list)
 tester.assertEqual(list_to_edges(graph_lists), graph_edges)
 ```
 
-## Connexité
+## Chemins et connexité
 
 ## 🏝️ Exo 🏝️
 
@@ -157,7 +157,7 @@ def connex_components(graph, n: int) -> List[List[int]]:
 
 ## 🌳 Exo 🌳
 
-### Graphes complets
+### Graphes connexes
 
 Écrire des fonctions en Python qui déterminent si un graphe connexe donné est
 
@@ -166,6 +166,56 @@ def connex_components(graph, n: int) -> List[List[int]]:
 - Une chaîne
 - Un arbre
 
+```python
+def is_complete(graph) -> bool:
+    pass # À toi de coder
+```
+
+```python
+assert is_complete([(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)])
+assert not is_complete([(1, 2), (1, 3), (1, 4), (2, 4), (3, 4)])
+```
+
+```python
+def is_star(graph) -> bool:
+    pass # À toi de coder
+```
+
+```python
+assert is_star([(1, 2), (1, 3), (1, 4), (1, 5)])
+assert not is_star([(1, 2), (1, 3), (1, 4), (1, 5), (2, 3)])
+assert not is_star([[(1, 2), (2, 3), (3, 4), (4, 5)]])
+```
+
+```python
+def is_chain(graph) -> bool:
+    pass # À toi de coder
+```
+
+```python
+assert is_chain([(1, 2), (2, 3), (3, 4), (4, 5)])
+assert not is_chain([(1, 2), (2, 3), (3, 4), (4, 5), (5, 1)])
+assert not is_chain([(1, 2), (1, 3), (1, 4), (1, 5)])
+```
+
+```python
+def is_tree(graph) -> bool:
+    pass # À toi de coder
+```
+
+```python
+assert is_tree([(1, 2), (1, 3), (1, 4), (1, 5)])
+assert is_tree([(1, 2), (2, 3), (3, 4), (4, 5)])
+assert is_tree([(1, 2), (1, 3), (2, 4), (2, 5)])
+assert not is_tree([(1, 2), (1, 3), (2, 4), (2, 5), (5, 4)])
+assert not is_tree([(1, 2), (1, 3), (2, 4), (2, 5), (4, 3)])
+```
+
 ### Forêts
 
-Écrire une fonction en Python qui détermine si un graphe connexe donné est une forêt.
+Écrire une fonction en Python qui détermine si un graphe donné est une forêt.
+
+### Recherche de gouverneur
+
+Écrire une fonction en Python qui étant donné une arborescence (sous la forme d'un arbre et d'une
+racine dans cet arbre) renvoie une liste qui associe à chaque nœud son gouverneur.
