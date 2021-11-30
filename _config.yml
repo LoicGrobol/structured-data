@@ -2,3 +2,6 @@ theme: jekyll-theme-slate
 
 title: Données structurées
 description: Contenus pour le cours « Documents structurés et écriture numérique » du master Plurital.
+
+exclude:
+  - "*.py.html"
