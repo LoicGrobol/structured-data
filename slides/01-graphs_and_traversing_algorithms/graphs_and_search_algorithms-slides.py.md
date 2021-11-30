@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.1
+      jupytext_version: 1.13.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -182,6 +182,50 @@ assert not has_path(graph, n, 5, 2)
 assert not has_path(graph, 6, 1, 6)
 ```
 
+```python
+from typing import Dict, Set
+
+# On utilise un dict pour ne pas avoir à se préoccuper de shifter les indices,
+# notre graphe étant sur {1, …, n} et les indices de listes de taille n étant
+# 0, …, n-1.
+# On utilise des ensembles plutôt que des listes d'adjacence pour éviter de se
+# poser des questions si jamais on a des arêtes répétées
+def edges_to_adjacency_dict(graph: Collection[Tuple[int, int]], n: int) -> Dict[int, Set[int]]:
+    res = {i: set() for i in range(1, n+1)}
+    for a, b in graph:
+        res[a].add(b)
+        res[b].add(a)
+    return res
+```
+
+```python
+def has_path(graph: Dict[int, Set[int]], a: int, b: int) -> bool:
+    stack = [a]
+    visited = set()
+    while stack:
+        current_node = stack.pop()
+        visited.add(current_node)
+        for neighbour in graph[a]:
+            if neighbour == b:
+                return True
+            elif neighbour in visited:
+                continue
+            else:
+                stack.append(neighbour)
+    return False
+```
+
+```python
+graph = edges_to_adjacency_dict([(1, 2), (3, 4), (3, 5), (4, 5)], 5)
+assert has_path(graph, 1, 2)
+assert has_path(graph, 2, 1)
+assert has_path(graph, 3, 5)
+assert not has_path(graph, 1, 3)
+assert not has_path(graph, 5, 2)
+graph[6] = set()
+assert not has_path(graph, 1, 6)
+```
+
 ### Test de connexité
 
 Écrire une fonction en Python qui détermine si un graphe sur $\{1, …, n\}$, donné sous la forme de
@@ -199,14 +243,74 @@ assert not is_connex([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)], 6)
 assert not is_connex([(1, 2), (3, 4), (3, 5), (4, 5)], 5)
 ```
 
+```python
+def is_connex(graph: Dict[int, Set[int]]) -> bool:
+    start = next(iter(graph.keys()))
+    to_visit = [start]
+    visited = set()
+    while to_visit:
+        current_node = to_visit.pop()
+        visited.add(current_node)
+        for neighbour in graph[current_node]:
+            if neighbour in visited:
+                continue
+            else:
+                to_visit.append(neighbour)
+    return len(visited) == len(graph)
+```
+
+```python
+assert is_connex(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)], 5))
+assert not is_connex(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)], 6))
+assert not is_connex(edges_to_adjacency_dict([(1, 2), (3, 4), (3, 5), (4, 5)], 5))
+```
+
 ### Composantes connexes
 
 Écrire une fonction en Python qui étant donné un graphe sur $\{1, …, n\}$, donné sous la forme de
 votre choix, renvoie ses composantes connexes maximales sous forme d'une liste de listes d'entiers.
 
 ```python
+from typing import List
+
 def connex_components(graph, n: int) -> List[List[int]]:
     pass # À toi de coder
+```
+
+```python
+from typing import List
+
+def connex_components(graph: Dict[int, Set[int]]) -> List[List[int]]:
+    res: List[List[int]] = []
+    to_visit = [next(iter(graph.keys()))]
+    visited = set()
+    current_component = []
+    while len(visited) < len(graph):
+        if not to_visit:
+            res.append(current_component)
+            current_component = []
+            current_node = next(n for n in graph.keys() if n not in visited)
+        else:
+            current_node = to_visit.pop()
+        visited.add(current_node)
+        current_component.append(current_node)
+        for neighbour in graph[current_node]:
+            # On pourrait éviter `visited` et se contenter de regarder si les
+            # voisins sont danc `current_component`
+            if neighbour in visited:
+                continue
+            else:
+                to_visit.append(neighbour)
+    res.append(current_component)
+    return res
+```
+
+```python
+connex_components(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)], 5))
+```
+
+```python
+connex_components(edges_to_adjacency_dict([(1, 2), (3, 4), (3, 5), (4, 5)], 5))
 ```
 
 ## Graphes particuliers
@@ -275,3 +379,7 @@ assert not is_tree([(1, 2), (1, 3), (2, 4), (2, 5), (4, 3)])
 
 Écrire une fonction en Python qui étant donné une arborescence (sous la forme d'un arbre et d'une
 racine dans cet arbre) renvoie une liste qui associe à chaque nœud son gouverneur.
+
+### ⚠️ Génération d'arbres ⚠️
+
+Écrire une fonction en Python qui étant donné un entier $n$ génère tous les arbres sur $\{0, …, n-1\}$. C'est une bonne idée de commencer par raisonner par induction et d'utiliser la récursivité.
