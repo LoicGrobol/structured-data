@@ -111,4 +111,4 @@ wv.similarity("cat", "bagpipe")
 
 ### Recherche d'analogies
 
-Une analogie est relation du type « *doigt* est à *main* ce que *orteil* est à *pied* », ce qu'on note parfois `doigt:main :: orteil:doigt`. Chercher dans WordNet des analogies de ce type en utilisant la méthode [`wn.Synset.relations`](https://wn.readthedocs.io/en/latest/api/wn.html?highlight=relation_paths#wn.Synset.relations).
+Une analogie est relation du type « *doigt* est à *main* ce que *orteil* est à *pied* », ce qu'on note parfois `doigt:main :: orteil:pied`. Chercher dans WordNet des analogies de ce type en utilisant la méthode [`wn.Synset.relations`](https://wn.readthedocs.io/en/latest/api/wn.html?highlight=relation_paths#wn.Synset.relations).

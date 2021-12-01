@@ -205,7 +205,7 @@ def has_path(graph: Dict[int, Set[int]], a: int, b: int) -> bool:
     while stack:
         current_node = stack.pop()
         visited.add(current_node)
-        for neighbour in graph[a]:
+        for neighbour in graph[current_node]:
             if neighbour == b:
                 return True
             elif neighbour in visited:
