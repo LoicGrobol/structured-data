@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.2
+      jupytext_version: 1.13.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -26,6 +26,14 @@ Cours 1 : Graphes et algorithmes de parcours
 
 ```python
 from IPython.display import display, Markdown
+```
+
+```python
+import matplotlib.pyplot as plt
+```
+
+```python
+import networkx as nx
 ```
 
 ## Graphes et représentations
@@ -67,6 +75,10 @@ graph_edges = {(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)}
 tester.assertEqual(neighbours(graph_nodes, graph_edges, 2), {1, 3})
 tester.assertEqual(neighbours(graph_nodes, graph_edges, 3), {2, 4, 5})
 tester.assertEqual(neighbours(graph_nodes, graph_edges, 6), set())
+```
+
+```python
+nx.draw_networkx(nx.Graph(graph_edges))
 ```
 
 ## 🕸️ Exo 🕸️
@@ -152,6 +164,10 @@ tester.assertEqual(matrix_to_list(graph_matrix), graph_list)
 tester.assertEqual(list_to_edges(graph_list), graph_edges)
 ```
 
+```python
+nx.draw_networkx(nx.Graph(graph_edges))
+```
+
 ## Chemins et connexité
 
 ## 🏝️ Exo 🏝️
@@ -169,28 +185,17 @@ def has_path(graph, n: int, a: int, b: int) -> bool:
     pass # À toi de coder
 ```
 
-Pour tester
-
 ```python
-graph = [(1, 2), (3, 4), (3, 5), (4, 5)]
-n = 5
-assert has_path(graph, n, 1, 2)
-assert has_path(graph, n, 2, 1)
-assert has_path(graph, n, 3, 5)
-assert not has_path(graph, n, 1, 3)
-assert not has_path(graph, n, 5, 2)
-assert not has_path(graph, 6, 1, 6)
-```
-
-```python
-from typing import Dict, Set
+from typing import Dict, Optional, Set
 
 # On utilise un dict pour ne pas avoir à se préoccuper de shifter les indices,
 # notre graphe étant sur {1, …, n} et les indices de listes de taille n étant
 # 0, …, n-1.
 # On utilise des ensembles plutôt que des listes d'adjacence pour éviter de se
 # poser des questions si jamais on a des arêtes répétées
-def edges_to_adjacency_dict(graph: Collection[Tuple[int, int]], n: int) -> Dict[int, Set[int]]:
+def edges_to_adjacency_dict(graph: Collection[Tuple[int, int]], n: Optional[int]=None) -> Dict[int, Set[int]]:
+    if n is None:
+        n = max(idx for edge in graph for idx in edge)
     res = {i: set() for i in range(1, n+1)}
     for a, b in graph:
         res[a].add(b)
@@ -215,6 +220,9 @@ def has_path(graph: Dict[int, Set[int]], a: int, b: int) -> bool:
     return False
 ```
 
+Pour tester
+
+
 ```python
 graph = edges_to_adjacency_dict([(1, 2), (3, 4), (3, 5), (4, 5)], 5)
 assert has_path(graph, 1, 2)
@@ -226,6 +234,10 @@ graph[6] = set()
 assert not has_path(graph, 1, 6)
 ```
 
+```python
+nx.draw_networkx(nx.Graph(graph))
+```
+
 ### Test de connexité
 
 Écrire une fonction en Python qui détermine si un graphe sur $\{1, …, n\}$, donné sous la forme de
@@ -234,13 +246,6 @@ votre choix, est connexe.
 ```python
 def is_connex(graph, n: int) -> bool:
     pass # À toi de coder
-```
-
-```python
-# On peut se servir des fonctions précédentes si on a choisi une autre représentation
-assert is_connex([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)], 5)
-assert not is_connex([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)], 6)
-assert not is_connex([(1, 2), (3, 4), (3, 5), (4, 5)], 5)
 ```
 
 ```python
@@ -260,9 +265,21 @@ def is_connex(graph: Dict[int, Set[int]]) -> bool:
 ```
 
 ```python
-assert is_connex(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)], 5))
+assert is_connex(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)]))
 assert not is_connex(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)], 6))
-assert not is_connex(edges_to_adjacency_dict([(1, 2), (3, 4), (3, 5), (4, 5)], 5))
+assert not is_connex(edges_to_adjacency_dict([(1, 2), (3, 4), (3, 5), (4, 5)]))
+```
+
+```python
+nx.draw_networkx(nx.Graph(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)])))
+```
+
+```python
+nx.draw_networkx(nx.Graph(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)], 6)))
+```
+
+```python
+nx.draw_networkx(nx.Graph(edges_to_adjacency_dict([(1, 2), (3, 4), (3, 5), (4, 5)])))
 ```
 
 ### Composantes connexes
@@ -306,11 +323,19 @@ def connex_components(graph: Dict[int, Set[int]]) -> List[List[int]]:
 ```
 
 ```python
-connex_components(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)], 5))
+connex_components(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)]))
 ```
 
 ```python
-connex_components(edges_to_adjacency_dict([(1, 2), (3, 4), (3, 5), (4, 5)], 5))
+nx.draw_networkx(nx.Graph(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (3, 5), (4, 5)])))
+```
+
+```python
+connex_components(edges_to_adjacency_dict([(1, 2), (3, 4), (3, 5), (4, 5)]))
+```
+
+```python
+nx.draw_networkx(nx.Graph(edges_to_adjacency_dict([(1, 2), (3, 4), (3, 5), (4, 5)])))
 ```
 
 ## Graphes particuliers
@@ -324,11 +349,18 @@ connex_components(edges_to_adjacency_dict([(1, 2), (3, 4), (3, 5), (4, 5)], 5))
 - Un graphe complet
 - Une étoile
 - Une chaîne
-- Un arbre
 
 ```python
 def is_complete(graph) -> bool:
     pass # À toi de coder
+```
+
+On exploite le fait qu'un graphe complet simple non-orienté à $n$ nœuds a $\frac{n(n-1)}{2}$ arêtes.
+
+```python
+def is_complete(graph) -> bool:
+    n = max(e for edge in graph for e in edge)
+    return len(graph) == n*(n-1)/2
 ```
 
 ```python
@@ -337,19 +369,79 @@ assert not is_complete([(1, 2), (1, 3), (1, 4), (2, 4), (3, 4)])
 ```
 
 ```python
+nx.draw_networkx(nx.Graph([(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]))
+```
+
+```python
+nx.draw_networkx(nx.Graph([(1, 2), (1, 3), (1, 4), (2, 4), (3, 4)]))
+```
+
+Si jamais il risque d'y avoir des doublons dans la représentation
+
+```python
+def is_complete(graph) -> bool:
+    n = max(e for edge in graph for e in edge)
+    dedup = set(sorted(e) for e in graph)
+    return len(dedup) == n*(n-1)/2
+```
+
+```python
 def is_star(graph) -> bool:
     pass # À toi de coder
+```
+
+Il y a plusieurs façon de faire, mais la plus simple, comme on sait déja que le graphe est connexe c'est de compter les degrés des nœuds.
+
+```python
+def is_star(graph) -> bool:
+    adj_dict = edges_to_adjacency_dict(graph)
+    center_found = False
+    for neighbours in adj_dict.values():
+        if len(neighbours) != 1:
+            if center_found:
+                return False
+            else:
+                center_found = True
+    return True
 ```
 
 ```python
 assert is_star([(1, 2), (1, 3), (1, 4), (1, 5)])
 assert not is_star([(1, 2), (1, 3), (1, 4), (1, 5), (2, 3)])
-assert not is_star([[(1, 2), (2, 3), (3, 4), (4, 5)]])
+assert not is_star([(1, 2), (2, 3), (3, 4), (4, 5)])
+```
+
+```python
+graphs = [
+    [(1, 2), (1, 3), (1, 4), (1, 5)],
+    [(1, 2), (1, 3), (1, 4), (1, 5), (2, 3)],
+    [(1, 2), (2, 3), (3, 4), (4, 5)],
+]
+fig, axes = plt.subplots(len(graphs))
+for g, ax in zip(graphs, axes):
+    nx.draw_networkx(nx.Graph(g), ax=ax)
 ```
 
 ```python
 def is_chain(graph) -> bool:
     pass # À toi de coder
+```
+
+Même idée que pour les étoiles : on compte les degrés
+
+```python
+def is_chain(graph) -> bool:
+    adj_dict = edges_to_adjacency_dict(graph)
+    ends_found = 0
+    for neighbours in adj_dict.values():
+        if len(neighbours) != 2:
+            if ends_found == 2:
+                return False
+            else:
+                ends_found += 1
+    # Si le graphe est un cercle, il se peut que tous
+    # les nœuds soient de degré 2
+    return ends_found == 2
 ```
 
 ```python
@@ -359,26 +451,187 @@ assert not is_chain([(1, 2), (1, 3), (1, 4), (1, 5)])
 ```
 
 ```python
-def is_tree(graph) -> bool:
-    pass # À toi de coder
+graphs = [
+    [(1, 2), (1, 3), (1, 4), (1, 5)],
+    [(1, 2), (1, 3), (1, 4), (1, 5), (2, 3)],
+    [(1, 2), (2, 3), (3, 4), (4, 5)],
+]
+fig, axes = plt.subplots(len(graphs))
+for g, ax in zip(graphs, axes):
+    nx.draw_networkx(nx.Graph(g), ax=ax)
+plt.show()
+```
+
+### Recherche de gouverneur
+
+Écrire une fonction en Python qui étant donné une arborescence (sous la forme d'un arbre et d'une
+racine dans cet arbre) renvoie un dictionnaire qui associe à chaque nœud son gouverneur.
+
+
+On fait simplement un parcours en profondeur en partant de la racine et en gardant trace du chemin
+suivi, c'est-à-dire que pour chaque nœud, on note le nœud à partir duquel on y a accédé. Comme dans
+un arbre, il n'y a qu'un seul chemin élémentaire qui mène de la racine à un nœud donné, ce nœud est
+forcément le parent recherché.
+
+```python
+def get_parent(tree: Dict[int, Set[int]], root: int) -> Dict[int, int]:
+    to_visit = [root]
+    # Pour marquer la racine on choisit de lui mettre une boucle, ainsi tous les
+    # nœuds visités ont un parent.
+    # On aurait aussi pu commencer avec un dictionnaire vide et utiliser
+    # `parent.value` pour vérifier si un nœud a déjà été visité
+    parent: Dict[int, int] = {root: root}
+    while to_visit:
+        current_node = to_visit.pop()
+        for neighbour in tree[current_node]:
+            # N'arrivera que pour le parent de current_node
+            if neighbour in parent:
+                assert neighbour == parent[current_node]
+            else:
+                parent[neighbour] = current_node
+                to_visit.append(neighbour)
+    return parent
 ```
 
 ```python
-assert is_tree([(1, 2), (1, 3), (1, 4), (1, 5)])
-assert is_tree([(1, 2), (2, 3), (3, 4), (4, 5)])
-assert is_tree([(1, 2), (1, 3), (2, 4), (2, 5)])
-assert not is_tree([(1, 2), (1, 3), (2, 4), (2, 5), (5, 4)])
-assert not is_tree([(1, 2), (1, 3), (2, 4), (2, 5), (4, 3)])
+tree = edges_to_adjacency_dict([(1, 2), (1, 3), (2, 4), (2, 5)])
+```
+
+```python
+nx.draw_networkx(nx.Graph(tree))
+```
+
+```python
+get_parent(tree, 1)
+```
+
+### Détection de cycles
+
+Écrire une fonction en Python qui étant donné un graphe connexe indique s'il contient au moins un
+cycle. En déduire une fonction qui détermine si un graphe connexe donné est un arbre.
+
+
+```python
+def has_cycle(graph) -> bool:
+    pass # À toi de coder
+```
+
+On a vu dans l'exercice précédent que l'algorithme de parcours en profondeur nous permettait de
+parcourir une arborescence en gardant trace des nœuds parents en se servant du fait qu'il n'y avait
+qu'un seul chemin élémentaire allant de la racine à un nœud donné. On va faire exactement la même
+chose ici, sauf qu'on va au contraire rechercher les cas où cette propriété n'est pas vérifiée.
+
+
+L'idée est la suivante : il y a un cycle si et seulement s'il existe un nœud pour lequel il y a deux
+chemins élémentaires distincts menant à la racine, si et seulement s'il existe un nœud pour lequel
+l'algorithme de parcours en profondeur trouve deux parents.
+
+```python
+def has_cycle(graph: Dict[int, Set[int]]) -> bool:
+    """ATTENTION: ne marche que pour un graphe connexe"""
+    root = next(iter(graph.keys()))
+    to_visit = [root]
+    parent: Dict[int, int] = {root: root}
+    while to_visit:
+        current_node = to_visit.pop()
+        for neighbour in graph[current_node]:
+            if neighbour in parent:
+                if neighbour != parent[current_node]:
+                    return True
+            else:
+                parent[neighbour] = current_node
+                to_visit.append(neighbour)
+    return False
+```
+
+Une fois qu'on ça, comme pour un graphe connexe, être un arbre et être acyclique sont équivalents,
+il suffit juste de vérifier si le graphe donné a un cycle.
+
+```python
+def is_tree(graph: Dict[int, Set[int]]) -> bool:
+    return not has_cycle(graph)
+```
+
+```python
+assert is_tree(edges_to_adjacency_dict([(1, 2), (1, 3), (1, 4), (1, 5)]))
+assert is_tree(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (4, 5)]))
+assert is_tree(edges_to_adjacency_dict([(1, 2), (1, 3), (2, 4), (2, 5)]))
+assert not is_tree(edges_to_adjacency_dict([(1, 2), (1, 3), (2, 4), (2, 5), (5, 4)]))
+assert not is_tree(edges_to_adjacency_dict([(1, 2), (1, 3), (2, 4), (2, 5), (4, 3)]))
+```
+
+```python
+graphs = [
+   [(1, 2), (1, 3), (1, 4), (1, 5)],
+    [(1, 2), (2, 3), (3, 4), (4, 5)],
+    [(1, 2), (1, 3), (2, 4), (2, 5)],
+    [(1, 2), (1, 3), (2, 4), (2, 5), (5, 4)],
+    [(1, 2), (1, 3), (2, 4), (2, 5), (4, 3)],
+]
+fig, axes = plt.subplots(len(graphs))
+for g, ax in zip(graphs, axes):
+    nx.draw_networkx(nx.Graph(g), ax=ax)
 ```
 
 ### Forêts
 
 Écrire une fonction en Python qui détermine si un graphe donné est une forêt.
 
-### Recherche de gouverneur
 
-Écrire une fonction en Python qui étant donné une arborescence (sous la forme d'un arbre et d'une
-racine dans cet arbre) renvoie une liste qui associe à chaque nœud son gouverneur.
+Une solution facile c'est de d'abord trouver les composantes connexes maximales, puis de déterminer si chacune d'entre elles est un arbre. Comme ça on a pas à réécrire de fonction. Mais on peut aussi combiner les deux : pendant qu'on est en train de parcourir les composantes, on peut aussi bien en profiter pour vérifier qu'elles sont acycliques. Concrètement ça va se passer exactement pareil que précédemment, simplement on a aura potentiellement plusieurs racines.
+
+```python
+def is_forest(graph: Dict[int, Set[int]]) -> bool:
+    visited = set()
+    to_visit = []
+    parent: Dict[int, int] = dict()
+    while len(visited) < len(graph):
+        if not to_visit:
+            current_node = next(n for n in graph.keys() if n not in visited)
+            parent[current_node] = current_node
+        else:
+            current_node = to_visit.pop()
+        visited.add(current_node)
+        for neighbour in graph[current_node]:
+            if neighbour in parent:
+                if neighbour != parent[current_node]:
+                    return False
+            else:
+                parent[neighbour] = current_node
+                to_visit.append(neighbour)
+    return True
+```
+
+```python
+# Les arbres sont des forêts
+assert is_forest(edges_to_adjacency_dict([(1, 2), (1, 3), (1, 4), (1, 5)]))
+assert is_forest(edges_to_adjacency_dict([(1, 2), (2, 3), (3, 4), (4, 5)]))
+assert is_forest(edges_to_adjacency_dict([(1, 2), (1, 3), (2, 4), (2, 5)]))
+# Retirer une arête à un arbre donne une forêt
+assert is_forest(edges_to_adjacency_dict([(1, 2), (1, 4), (1, 5)]))
+assert is_forest(edges_to_adjacency_dict([(1, 2), (3, 4), (4, 5)]))
+assert is_forest(edges_to_adjacency_dict([(1, 2), (1, 3), (2, 5)]))
+# Ajouter une arête à un arbre crée un cycle : pas de forêt !
+assert not is_forest(edges_to_adjacency_dict([(1, 2), (1, 3), (2, 4), (2, 5), (5, 1)]))
+# Et d'autres non-forêts
+assert not is_forest(edges_to_adjacency_dict([(1, 3), (2, 4), (2, 5), (5, 4)]))
+```
+
+```python
+graphs = [
+   [(1, 2), (1, 3), (1, 4), (1, 5)],
+    [(1, 2), (2, 3), (3, 4), (4, 5)],
+    [(1, 2), (1, 3), (2, 4), (2, 5)],
+    [(1, 2), (1, 4), (1, 5)],
+    [(1, 2), (3, 4), (4, 5)],
+    [(1, 2), (1, 3), (2, 5)],
+    [(1, 2), (1, 3), (2, 4), (2, 5), (5, 1)],
+    [(1, 3), (2, 4), (2, 5), (5, 4)],
+]
+fig, axes = plt.subplots(len(graphs))
+for g, ax in zip(graphs, axes):
+    nx.draw_networkx(nx.Graph(g), ax=ax)
+```
 
 ### ⚠️ Génération d'arbres ⚠️
 
