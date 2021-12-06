@@ -209,6 +209,8 @@ def has_path(graph: Dict[int, Set[int]], a: int, b: int) -> bool:
     visited = set()
     while stack:
         current_node = stack.pop()
+        if current_node in visited:
+            continue
         visited.add(current_node)
         for neighbour in graph[current_node]:
             if neighbour == b:
@@ -255,6 +257,8 @@ def is_connex(graph: Dict[int, Set[int]]) -> bool:
     visited = set()
     while to_visit:
         current_node = to_visit.pop()
+        if current_node in visited:
+            continue
         visited.add(current_node)
         for neighbour in graph[current_node]:
             if neighbour in visited:
@@ -309,6 +313,8 @@ def connex_components(graph: Dict[int, Set[int]]) -> List[List[int]]:
             current_node = next(n for n in graph.keys() if n not in visited)
         else:
             current_node = to_visit.pop()
+            if current_node in visited:
+                continue
         visited.add(current_node)
         current_component.append(current_node)
         for neighbour in graph[current_node]:
@@ -435,7 +441,9 @@ def is_chain(graph) -> bool:
     ends_found = 0
     for neighbours in adj_dict.values():
         if len(neighbours) != 2:
-            if ends_found == 2:
+            if len(neighbours) != 1:
+                return False
+            elif ends_found == 2:
                 return False
             else:
                 ends_found += 1
@@ -508,7 +516,7 @@ get_parent(tree, 1)
 ### Détection de cycles
 
 Écrire une fonction en Python qui étant donné un graphe connexe indique s'il contient au moins un
-cycle. En déduire une fonction qui détermine si un graphe connexe donné est un arbre.
+cycle élémentaire. En déduire une fonction qui détermine si un graphe connexe donné est un arbre.
 
 
 ```python
