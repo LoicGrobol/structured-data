@@ -19,6 +19,11 @@ jobs:
 
       - name: Install tinytex
         uses: r-lib/actions/setup-tinytex@v1
+
+      - name: Install LaTeX packages
+         run: |
+          tinytex::tlmgr_install('scheme-full')
+        shell: Rscript {0}
       
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
