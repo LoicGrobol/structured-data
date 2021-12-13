@@ -301,6 +301,10 @@
 	\titlepage
 \end{frame}
 
+\begin{frame}[standout]
+	D'après un cours original de Miryam de Lhoneux.
+\end{frame}
+
 \section{Analyse syntaxique}
 
 \begin{frame}{Analyse syntaxique}
@@ -318,7 +322,7 @@
 								\depedge{2}{1}{nsubj}
 								\depedge{2}{3}{obj}
 						\end{dependency}
-						\caption*{A dependency tree}
+						\caption*{Analyse en dépendances}
 				\end{figure}
 			}
 
@@ -333,7 +337,7 @@
 								\depedge[red]{2}{1}{nsubj}
 								\depedge{2}{3}{obj}
 						\end{dependency}
-						\caption*{A dependency tree}
+						\caption*{Analyse en dépendances}
 				\end{figure}
 			}
 
@@ -348,7 +352,7 @@
 								\depedge[red]{2}{1}{nsubj}
 								\depedge{2}{3}{obj}
 						\end{dependency}
-						\caption*{A dependency tree}
+						\caption*{Analyse en dépendances}
 				\end{figure}
 			}
 
@@ -372,16 +376,13 @@
 			\begin{column}{0.4\textwidth}
 				\only<2-5>{
 			\begin{figure}
-		%\centering
-		%RIP qtree
-		%\Tree [.love I syntax ]
 		\begin{forest}
 			[love
 				[I, edge label={node[midway,left,font=\scriptsize]{nsubj}}]
 				[syntax, edge label={node[midway,right,font=\scriptsize]{obj}}]
 			]
 		\end{forest}
-		\caption*{Une autre réprésentation}
+		\caption*{Une autre représentation}
 \end{figure}
 }
 \end{column}
@@ -775,7 +776,7 @@ Universal Dependencies & Many original datasets (e.g. PTB)
 \end{overlayarea}
 \end{frame}
 
-\begin{frame}{Syntactic parsing: what}
+\begin{frame}{Comparaison}
 \begin{table}[]
 \begin{tabular}{l|l}
 	\textbf{Dépendances}             & \textbf{Constituants}                 \\ 
@@ -1562,14 +1563,6 @@ jumped & \cellcolor[HTML]{6095EB}0.7                     & \cellcolor[HTML]{C9DA
 						\includegraphics[scale=0.4]{images/archit_gb}
 				\end{figure}
 			}
-\only<9>{
-	%TODO: ideally redo this in a separate frame that does not say parsing with recurrent neural netsA - but then I would also need proper citation for it
-				\begin{figure}
-						\centering
-						\includegraphics[scale=0.4]{images/architecture_transformers}
-				\end{figure}
-			}
-
 
 		\only<2-7>{
 		\vspace{1cm}
@@ -2220,7 +2213,7 @@ N $\rightarrow$ fish                      &
 \end{overlayarea}
 \end{frame}
 
-\begin{frame}{Constituency parsing with neural networks}
+\begin{frame}{Analyse en constituants neuronale}
 	%TODO: make sure I really get how this works
 
 	\begin{overlayarea}{\textwidth}{\textheight}

@@ -16,6 +16,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+
+      - name: Install tinytex
+        uses: r-lib/actions/setup-tinytex@v1
       
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -60,6 +63,11 @@ jobs:
           jupytext --to ipynb ${{ github.workspace }}/slides/**/*.py.md
           jupyter nbconvert --execute --allow-errors --to html ${{ github.workspace }}/slides/**/*.py.ipynb
           jupyter nbconvert --to slides ${{ github.workspace }}/slides/**/*-slides.py.ipynb
+      
+      - name: Build LaTeX slides
+        run: |
+          cd slides/04-parsing
+          latexmk -lualatex -interaction=nonstopmode -shell-escape pres.tex
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
