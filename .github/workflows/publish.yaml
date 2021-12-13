@@ -66,7 +66,7 @@ jobs:
         with:
           root_file: |
             slides/04-parsing/pres.tex
-          latexmk_use_lualatex: true
+          args: "-lualatex -cd -file-line-error -halt-on-error -interaction=nonstopmode"
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
