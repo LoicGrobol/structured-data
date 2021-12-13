@@ -1,0 +1,112 @@
+@inproceedings{kuhlmann-etal-2011-dynamic,
+    title = "Dynamic Programming Algorithms for Transition-Based Dependency Parsers",
+    author = "Kuhlmann, Marco  and
+      G{\'o}mez-Rodr{\'\i}guez, Carlos  and
+      Satta, Giorgio",
+    booktitle = "Proceedings of the 49th Annual Meeting of the Association for Computational Linguistics: Human Language Technologies",
+    month = jun,
+    year = "2011",
+    address = "Portland, Oregon, USA",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/P11-1068",
+    pages = "673--682",
+}
+
+@inproceedings{kulmizev19deep,
+    title = "Deep Contextualized Word Embeddings in Transition-Based and Graph-Based Dependency Parsing - A Tale of Two Parsers Revisited",
+    author = "Kulmizev, Artur  and
+    de Lhoneux, Miryam  and
+    Gontrum, Johannes  and
+    Fano, Elena  and
+    Nivre, Joakim",
+    booktitle = "EMNLP-IJCNLP",
+    month = nov,
+    year = "2019",
+    address = "Hong Kong, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/D19-1277",
+    doi = "10.18653/v1/D19-1277",
+    pages = "2755--2768",
+    abstract = "Transition-based and graph-based dependency parsers have previously been shown to have complementary strengths and weaknesses: transition-based parsers exploit rich structural features but suffer from error propagation, while graph-based parsers benefit from global optimization but have restricted feature scope. In this paper, we show that, even though some details of the picture have changed after the switch to neural networks and continuous representations, the basic trade-off between rich features and global optimization remains essentially the same. Moreover, we show that deep contextualized word embeddings, which allow parsers to pack information about global sentence structure into local feature representations, benefit transition-based parsers more than graph-based parsers, making the two approaches virtually equivalent in terms of both accuracy and error profile. We argue that the reason is that these representations help prevent search errors and thereby allow transition-based parsers to better exploit their inherent strength of making accurate local decisions. We support this explanation by an error analysis of parsing experiments on 13 languages.",
+}
+
+@inproceedings{dyer15,
+  author =        {Chris Dyer and Miguel Ballesteros and Wang Ling and
+                   Austin Matthews and Noah A. Smith},
+  booktitle =     {Proceedings of ACL-IJCNLP},
+  pages =         {334--343},
+  title =         {Transition-Based Dependency Parsing with Stack Long
+                   Short-Term Memory},
+  year =          {2015},
+  biburl =        {http://dblp.uni-trier.de/rec/bib/conf/acl/DyerBLMS15},
+  url =           {http://aclweb.org/anthology/P/P15/P15-1033.pdf},
+}
+
+@techreport{mcdonald05tech,
+  author =        {McDonald, Ryan and Crammer, Koby and
+                   Pereira, Fernando},
+  institution =   {University of Pennsylvania, Department of Computer
+                   and Information Science},
+  number =        {MS-CIS-05-11},
+  title =         {{Spanning Tree Methods for Discriminative Training of
+                   Dependency Parsers}},
+  year =          {2005},
+}
+
+@article{kiperwasser16,
+  author =        {Kiperwasser, Eliyahu and Goldberg, Yoav},
+  journal =       {Transactions of the Association for Computational
+                   Linguistics},
+  pages =         {313--327},
+  title =         {{Simple and Accurate Dependency Parsing Using
+                   Bidirectional LSTM Feature Representations}},
+  volume =        {4},
+  year =          {2016},
+}
+
+@inproceedings{delhoneux19recursive,
+    title = "Recursive Subtree Composition in {LSTM}-Based Dependency Parsing",
+    author = "de Lhoneux, Miryam  and
+    Ballesteros, Miguel  and
+    Nivre, Joakim",
+    booktitle = "Proceedings of the 2019 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers)",
+    month = jun,
+    year = "2019",
+    address = "Minneapolis, Minnesota",
+    publisher = "Association for Computational Linguistics",
+    url = "https://www.aclweb.org/anthology/N19-1159",
+    doi = "10.18653/v1/N19-1159",
+    pages = "1566--1576",
+    abstract = "The need for tree structure modelling on top of sequence modelling is an open issue in neural dependency parsing. We investigate the impact of adding a tree layer on top of a sequential model by recursively composing subtree representations (composition) in a transition-based parser that uses features extracted by a BiLSTM. Composition seems superfluous with such a model, suggesting that BiLSTMs capture information about subtrees. We perform model ablations to tease out the conditions under which composition helps. When ablating the backward LSTM, performance drops and composition does not recover much of the gap. When ablating the forward LSTM, performance drops less dramatically and composition recovers a substantial part of the gap, indicating that a forward LSTM and composition capture similar information. We take the backward LSTM to be related to lookahead features and the forward LSTM to the rich history-based features both crucial for transition-based parsers. To capture history-based information, composition is better than a forward LSTM on its own, but it is even better to have a forward LSTM as part of a BiLSTM. We correlate results with language properties, showing that the improved lookahead of a backward LSTM is especially important for head-final languages.",
+}
+
+@inproceedings{kitaev-klein-2018-constituency,
+    title = "Constituency Parsing with a Self-Attentive Encoder",
+    author = "Kitaev, Nikita  and
+      Klein, Dan",
+    booktitle = "Proceedings of the 56th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+    month = jul,
+    year = "2018",
+    address = "Melbourne, Australia",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/P18-1249",
+    doi = "10.18653/v1/P18-1249",
+    pages = "2676--2686",
+    abstract = "We demonstrate that replacing an LSTM encoder with a self-attentive architecture can lead to improvements to a state-of-the-art discriminative constituency parser. The use of attention makes explicit the manner in which information is propagated between different locations in the sentence, which we use to both analyze our model and propose potential improvements. For example, we find that separating positional and content information in the encoder can lead to improved parsing accuracy. Additionally, we evaluate different approaches for lexical representation. Our parser achieves new state-of-the-art results for single models trained on the Penn Treebank: 93.55 F1 without the use of any external data, and 95.13 F1 when using pre-trained word representations. Our parser also outperforms the previous best-published accuracy figures on 8 of the 9 languages in the SPMRL dataset.",
+}
+
+@inproceedings{dyer-etal-2016-recurrent,
+    title = "Recurrent Neural Network Grammars",
+    author = "Dyer, Chris  and
+      Kuncoro, Adhiguna  and
+      Ballesteros, Miguel  and
+      Smith, Noah A.",
+    booktitle = "Proceedings of the 2016 Conference of the North {A}merican Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    month = jun,
+    year = "2016",
+    address = "San Diego, California",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/N16-1024",
+    doi = "10.18653/v1/N16-1024",
+    pages = "199--209",
+}
