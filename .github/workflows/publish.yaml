@@ -70,7 +70,8 @@ jobs:
       
       - name: Move generated pdfs to build dir
         run: |
-          cp slides/04-parsing/pres.pdf _build/
+          mkdir pdf_slides
+          cp slides/04-parsing/pres.pdf pdf_slides/04-parsing.pdf
 
       - name: Deploy to GitHub Pages 🚀
         if: github.ref == 'refs/heads/main'
