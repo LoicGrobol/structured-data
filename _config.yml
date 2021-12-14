@@ -4,8 +4,7 @@ title: Données structurées
 description: Contenus pour le cours « Documents structurés et écriture numérique » du master Plurital.
 
 exclude:
-  - "*.py.html"
-  - "pdf_slides/*"
+  - "*.py.md"
 
 keep_files:
   - "*.py.html"
