@@ -67,10 +67,14 @@ jobs:
           root_file: |
             slides/04-parsing/pres.tex
           args: "-lualatex -cd -file-line-error -halt-on-error -interaction=nonstopmode"
+      
+      - name: Move generated pdfs to build dir
+        run: |
+          cp slides/04-parsing/pres.pdf _build/
 
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages 🚀
         if: github.ref == 'refs/heads/main'
-        uses: JamesIves/github-pages-deploy-action@4.1.5
+        uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           branch: gh-pages
           folder: .
