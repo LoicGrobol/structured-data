@@ -76,8 +76,7 @@
 	)
 }
 
-\setsansfont{Fira Sans}[
-	BoldFont={* Semibold},
+\setsansfont{Atkinson Hyperlegible}[
 	RawFeature={fallback=emojifallback},
 ]
 \setmonofont[Scale=0.9]{Fira Mono}
@@ -419,6 +418,9 @@
 	\end{block}
 }
 \end{frame}
+
+% TODO: ajouter un exemple non-projective pour les dépendances
+% ou deux ? FR et FRO ?
 
 \begin{frame}{Comparaison}
 	\only<1>{
@@ -1336,31 +1338,18 @@ Universal Dependencies & Many original datasets (e.g. PTB)
 
 
 \begin{frame}{À vous de jouer !}
-		\begin{overlayarea}{\textwidth}{0.8\textheight}
-	\begin{block}{}
-	Goal: figure out the transition sequence for this tree:
-	\end{block}
+	Trouver une séquence de transitions pour cet arbre
 	\begin{figure}
-			\begin{dependency}[theme=simple]
-					\begin{deptext}[column sep=1em]
-							I \& love \& parsing \& ! \& **root**\\
-					\end{deptext}
-					\depedge{2}{1}{}
-					\depedge{5}{2}{}
-					\depedge{2}{3}{}
-					\depedge{2}{4}{}
-			\end{dependency}
+		\begin{dependency}[theme=simple]
+			\begin{deptext}[column sep=1em]
+					I \& love \& parsing \& ! \& **root**\\
+			\end{deptext}
+			\depedge{2}{1}{}
+			\depedge{5}{2}{}
+			\depedge{2}{3}{}
+			\depedge{2}{4}{}
+		\end{dependency}
 	\end{figure}
-
-	\only<2->{
-		%TODO!! I cannot leave this here - it says delft trial lecture :)
-		\begin{figure}
-			\centering
-			\includegraphics[scale=0.3]{images/quizalize.png}
-		\end{figure}
-	}
-
-\end{overlayarea}
 \end{frame}
 
 \begin{frame}{Parseurs graphes}
@@ -2213,35 +2202,34 @@ N $\rightarrow$ fish                      &
 \end{overlayarea}
 \end{frame}
 
+% \begin{frame}{Analyse en constituants neuronale}
+% 	\begin{figure}
+% 		\centering
+% 		\includegraphics[scale=0.4]{images/const_parser}
+% 	\end{figure}
+
+% 	\vfill
+% 	\tiny{\textcite{kitaev-klein-2018-constituency}}
+% \end{frame}
+
 \begin{frame}{Analyse en constituants neuronale}
-	%TODO: make sure I really get how this works
-
-	\begin{overlayarea}{\textwidth}{\textheight}
-	\only<1>{
 	\begin{figure}
-			\centering
-			\includegraphics[scale=0.4]{images/const_parser}
+		\centering
+		\includegraphics[scale=0.5]{images/rnng}
 	\end{figure}
 
-		\vspace{0.5cm}
-		\tiny{
-		\textcite{kitaev-klein-2018-constituency}
-		}
-	}
+	\vfill
+	\tiny{\textcite{dyer-etal-2016-recurrent}}
+\end{frame}
 
-	\only<2>{
-		\vspace{2cm}
+\begin{frame}{Parsing génératif}
 	\begin{figure}
-			\centering
-			\includegraphics[scale=0.2]{images/rnng}
+		\centering
+		\includegraphics[scale=0.5]{images/rnng_states.png}
 	\end{figure}
 
-		\vspace{1.5cm}
-		\tiny{
-		\textcite{dyer-etal-2016-recurrent}
-		}
-	}
-\end{overlayarea}
+	\vfill
+	\tiny{\textcite{dyer-etal-2016-recurrent}}
 \end{frame}
 
 \begin{frame}{En résumé}
