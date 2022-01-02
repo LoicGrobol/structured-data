@@ -100,4 +100,16 @@ On dit qu'un nœud $s$ *suit le consensus local* si $l(s)$ est majoritaire au se
   - Pour chaque $s∈S$
     - On détermine $k$, l'étiquette majoritaire au sein des voisins de $s$
     - $l(s) := k$
+
 <!-- #endregion -->
+
+## Appplication à la représentation vectorielles de mots
+
+
+Connes et Dugué ([2019](https://hal.archives-ouvertes.fr/hal-02408156))
+
+- Lire
+- Résumer
+  - Principe général en quelques phrases
+  - Choix techniques avec leurs justifications et leurs conséquences
+- Reproduire sur [CIDRE](https://www.ortolang.fr/market/corpora/cidre)
