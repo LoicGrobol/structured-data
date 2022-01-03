@@ -82,7 +82,7 @@ jobs:
             ${{ runner.os }}-gems-
       
       - name: Build with Jekyll
-        uses: helaili/jekyll-action@v2
+        uses: helaili/jekyll-action@master
         with:
           build_only: true
           target_path: /
