@@ -5,6 +5,7 @@ ipympl
 jupyterlab
 jupytext
 nbconvert
+networkx
 numpy
 matplotlib
 pandas
