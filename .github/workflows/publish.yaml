@@ -93,7 +93,7 @@ jobs:
         
       - name: Move generated jekyll-generated html to main workspace
         run: |
-          cp -R ../jekyll_build/* .
+          cp -R /github/jekyll_build/* .
 
       - name: Deploy to GitHub Pages 🚀
         if: github.ref == 'refs/heads/main'
