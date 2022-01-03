@@ -1,5 +1,5 @@
 ---
-title: Données structurées — M2 PluriTAL 2021
+title: Données structurées — M2 PluriTAL 2021
 ---
 
 [comment]: <> "LTeX: language=fr"
