@@ -85,16 +85,16 @@ jobs:
         uses: helaili/jekyll-action@master
         with:
           build_only: true
-          target_path: /
+          target_path: .
           target_branch: gh-pages
 
       - name: Deploy to GitHub Pages 🚀
         if: github.ref == 'refs/heads/main'
-        uses: JamesIves/github-pages-deploy-action@4.1.7
+        uses: JamesIves/github-pages-deploy-action@4.1.8
         with:
-          nojekyll: true
           branch: gh-pages
           folder: .
+          single-commit: true
 
   prebuild-binder:
     runs-on: ubuntu-latest
