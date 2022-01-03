@@ -72,11 +72,26 @@ jobs:
         run: |
           mkdir pdf_slides
           cp slides/04-parsing/pres.pdf pdf_slides/04-parsing.pdf
+      
+      - name: Get node cache
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      
+      - name: Build with Jekyll
+        uses: helaili/jekyll-action@v2
+        with:
+          build_only: true
+          target_path: /
 
       - name: Deploy to GitHub Pages 🚀
         if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
+          nojekyll: true
           branch: gh-pages
           folder: .
 
