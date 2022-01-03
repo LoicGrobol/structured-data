@@ -3,6 +3,8 @@ theme: minimal-mistakes-jekyll
 title: Données structurées
 description: Contenus pour le cours « Documents structurés et écriture numérique » du master Plurital.
 
+baseurl: https://loicgrobol.github.io/structured-data
+
 exclude:
   - "*.py.md"
 

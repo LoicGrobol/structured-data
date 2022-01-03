@@ -57,7 +57,7 @@ def buffer_from_dict(d):
         for i, (w, h) in enumerate(
             zip(
                 ["ROOT", *d["tokens"]],
-                [None, *d["head"]],
+                [None, *(int(h) for h in d["head"])],
             )
         )
     ]
@@ -71,7 +71,7 @@ from collections import Counter
 def oracle(buffer):
     # On copie le buffer pour ne pas le détruire et on le retourne pour
     # avec `pop` optimalement
-    buffer = reversed(buffer)
+    buffer = buffer[::-1]
     # Comme d'habitude, une liste c'est une pile
     stack = []
     # On va construire le résultat à l'envers (pour utiliser `append` et on
@@ -84,16 +84,32 @@ def oracle(buffer):
         remaining_dependents[head] += 1
 
     while buffer or stack:
+        if res:
+            print(res[-1], stack, buffer, remaining_dependents)
         if len(stack) < 2:
             if buffer:
                 res.append("SHIFT")
                 stack.append(buffer.pop())
+                continue
             else:
                 break
         stack_top = stack[-1]
         stack_under = stack[-2]
         if stack_top[2] == stack_under[0] and not remaining_dependents[stack_top[0]]:
             res.append("LEFT-ARC")
+            remaining_dependents[stack_top[2]] -= 1
             stack.pop(-2)
-        elif
+        elif stack_top[0] == stack_under[2] and not remaining_dependents[stack_under[0]]:
+            res.append("RIGHT-ARC")
+            remaining_dependents[stack_under[2]] -= 1
+            stack.pop()
+        else:
+            if buffer:
+                res.append("SHIFT")
+                stack.append(buffer.pop())
+            else:
+                return None
+    return res[::-1]
+
+oracle(buffer_from_dict(train_dataset[5]))
 ```
