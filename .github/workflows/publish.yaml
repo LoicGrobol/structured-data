@@ -94,17 +94,13 @@ jobs:
         with:
           enable_cache: true
           custom_opts: '--verbose'
-      
-      - name: Move generated jekyll-generated html to main workspace
-        run: |
-          cp -R ./_site/* .
 
       - name: Deploy to GitHub Pages 🚀
         if: github.ref == 'refs/heads/main'
         uses: JamesIves/github-pages-deploy-action@4.1.8
         with:
           branch: gh-pages
-          folder: .
+          folder: _site
           single-commit: true
 
   prebuild-binder:
