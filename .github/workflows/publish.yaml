@@ -86,6 +86,7 @@ jobs:
         with:
           build_only: true
           target_path: /
+          target_branch: gh-pages
 
       - name: Deploy to GitHub Pages 🚀
         if: github.ref == 'refs/heads/main'
