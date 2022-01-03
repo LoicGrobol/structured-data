@@ -48,6 +48,15 @@ est indisponible.
   [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/03-random_graphs/random_graphs.py.md)
 
+### 2021-12-13 – Analyseurs syntaxiques automatiques
+
+- [Slides parsers](pdf_slides/04-parsing.pdf)
+
+### 2022-01-03 — Détection de communautés
+
+- [Slides Détection de communautés](slides/05-communities/communities.py.html) [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/05-communities/communities.py.md)
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
