@@ -1,6 +1,7 @@
 # npm and jekyll cache
 vendor
 .jekyll-cache
+.bundle
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
