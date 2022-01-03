@@ -1,4 +1,5 @@
 conllu
+datasets
 gensim
 ipycytoscape
 ipympl

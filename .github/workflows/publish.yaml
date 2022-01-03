@@ -88,8 +88,12 @@ jobs:
         uses: helaili/jekyll-action@master
         with:
           build_only: true
-          target_path: ../workspace
+          target_path: /
           target_branch: gh-pages
+        
+      - name: Move generated jekyll-generated html to main workspace
+        run: |
+          cp -R ../jekyll_build/* .
 
       - name: Deploy to GitHub Pages 🚀
         if: github.ref == 'refs/heads/main'
