@@ -84,16 +84,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
       
-      - name: Build with Jekyll
-        uses: helaili/jekyll-action@master
+      - name: 💎 setup ruby
+        uses: ruby/setup-ruby@v1
         with:
-          build_only: true
-          target_path: /
-          target_branch: gh-pages
-        
+          ruby-version: 2.7 # can change this to 2.7 or whatever version you prefer
+
+      - name: 🔨 install dependencies & build site
+        uses: limjh16/jekyll-action-ts@v2
+        with:
+          enable_cache: true
+          custom_opts: '--verbose'
+      
       - name: Move generated jekyll-generated html to main workspace
         run: |
-          cp -R /github/jekyll_build/* .
+          cp -R ./_site/* .
 
       - name: Deploy to GitHub Pages 🚀
         if: github.ref == 'refs/heads/main'
