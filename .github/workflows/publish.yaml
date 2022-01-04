@@ -67,7 +67,7 @@ jobs:
       - name: Build LaTeX slides
         uses: xu-cheng/latex-action@v2
         with:
-          root_file: |s
+          root_file: |
             slides/04-parsing/latex_slides/pres.tex
           args: "-lualatex -cd -file-line-error -halt-on-error -interaction=nonstopmode"
       

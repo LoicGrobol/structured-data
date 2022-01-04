@@ -14,7 +14,7 @@ toc: true
 - **Quoi** « Données structurées »
 - **Où** Salle 219, bâtiment Paul Ricœur, Université Paris Nanterre, 200 avenue de la République,
   Nanterre
-- **Quand** 8 séances, les lundi de 13:30 à 16:30, du 29/11 au 24/01
+- **Quand** 8 séances, les lundis de 13:30 à 16:30, du 29/11 au 24/01
   - Voir [le
     planning](http://www.tal.univ-paris3.fr/plurital/admin/Calendrier_M2_TAL_PX_2021_22.xlsx) pour
     les dates exactes
