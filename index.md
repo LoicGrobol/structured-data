@@ -1,5 +1,6 @@
 ---
-title: Données structurées — M2 PluriTAL 2021
+title: Informations et cours
+toc: true
 ---
 
 [comment]: <> "LTeX: language=fr"
@@ -67,7 +68,7 @@ extensions adéquates. Le plus simple est le suivant
 1. Récupérez le dossier du cours, soit en téléchargeant et décompressant
    [l'archive](https://github.com/LoicGrobol/structured-data/archive/refs/heads/main.zip)
    soit en le clonant avec git : `git clone
-   https://github.com/LoicGrobol/tructured-data.git` et placez-vous dans ce dossier.
+   https://github.com/LoicGrobol/structured-data.git` et placez-vous dans ce dossier.
 2. Créez un environnement virtuel pour le cours
 
    ```console
@@ -97,18 +98,18 @@ Il y a beaucoup, beaucoup de ressources disponibles pour apprendre Python. Ce qu
 
 #### Livres
 
-- How to think like a computer scientist, by Jeffrey Elkner, Allen B. Downey, and Chris Meyers. Vous
+- *How to think like a computer scientist*, Jeffrey Elkner, Allen B. Downey, et Chris Meyers. Vous
   pouvez l'acheter. Vous pouvez aussi le lire
   [ici](http://openbookproject.net/thinkcs/python/english3e/)
-- Dive into Python, by Mark Pilgrim. [Ici](http://www.diveintopython3.net/) vous pouvez le lire ou
+- *Dive into Python*, Mark Pilgrim. [Ici](http://www.diveintopython3.net/) vous pouvez le lire ou
   télécharger le pdf.
-- Learning Python, by Mark Lutz.
-- Beginning Python, by Magnus Lie Hetland.
-- Python Algorithms: Mastering Basic Algorithms in the Python Language, by Magnus Lie Hetland.
+- *Learning Python*, Mark Lutz.
+- *Beginning Python*, Magnus Lie Hetland.
+- *Python Algorithms: Mastering Basic Algorithms in the Python Language*, Magnus Lie Hetland.
   Peut-être un peu costaud pour des débutants.
-- Programmation Efficace. Les 128 Algorithmes Qu'Il Faut Avoir Compris et Codés en Python au Cours
-  de sa Vie, by Christoph Dürr and Jill-Jênn Vie. Si le cours vous paraît trop facile. Le code
-  Python est clair, les difficultés sont commentées. Les algos sont très costauds.
+- *Programmation Efficace. Les 128 Algorithmes Qu'Il Faut Avoir Compris et Codés en Python au Cours
+  de sa Vie*, Christoph Dürr et Jill-Jênn Vie. Si le cours vous paraît trop facile. Le code Python
+  est clair, les difficultés sont commentées. Les algos sont très costauds.
 
 #### Web
 

@@ -1,9 +1,15 @@
 theme: minimal-mistakes-jekyll
 
-title: Données structurées
+title: Données structurées — M2 PluriTAL
 description: Contenus pour le cours « Documents structurés et écriture numérique » du master Plurital.
+name: Loïc Grobol
 
-baseurl: /structured-data
+baseurl: "/structured-data"
+repository: "loicgrobol/structured-data"
+
+atom_feed:
+  hide: true
+
 
 exclude:
   - "*.py.md"

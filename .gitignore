@@ -3,6 +3,9 @@ vendor
 .jekyll-cache
 .bundle
 
+# local jekyll build
+_site
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
