@@ -5,15 +5,20 @@ toc: true
 
 [comment]: <> "LTeX: language=fr"
 
+## Nouvelles
+
+- **2022-01-04**, le cours du 17/01 est reporté au mercredi 26/01, même heure, même salle
+
 ## Infos pratiques
 
 - **Quoi** « Données structurées »
-- **Où** Salle 219, bâtiment Paul Ricœur
-- **Quand** 8 séances, les lundi de 13:30 à 16:30, du 29/11 au 31/01
+- **Où** Salle 219, bâtiment Paul Ricœur, Université Paris Nanterre, 200 avenue de la République,
+  Nanterre
+- **Quand** 8 séances, les lundi de 13:30 à 16:30, du 29/11 au 24/01
   - Voir [le
     planning](http://www.tal.univ-paris3.fr/plurital/admin/Calendrier_M2_TAL_PX_2021_22.xlsx) pour
     les dates exactes
-- **Contact** Loïc Grobol [<loic.grobol@parisnanterre.fr>](mailto:loic.grobol@parisnanterre.fr)
+- **Contact** Loïc Grobol [`<lgrobol@parisnanterre.fr>`](mailto:lgrobol@parisnanterre.fr)
 
 ## Séances
 
@@ -28,26 +33,27 @@ est indisponible.
 
 ### 2021-11-20 — Graphes et algorithmes d'exploration
 
-- [Slides Graphes et algorithmes
-  d'exploration](slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.html)
-  [![Launch in Binder
+- [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.md)
+  [Slides Graphes et algorithmes
+  d'exploration](slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.html)
 
 ### 2021-12-01 — Graphes particuliers et réseaux lexicaux
 
-- [Slides Graphes et algorithmes
-  d'exploration](slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.html)
-  [![Launch in Binder
+- [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.md)
-- [Slides Réseaux lexicaux](slides/02-wordnet/wordnet.py.html)
-  [![Launch in Binder
+  [Slides Graphes et algorithmes
+  d'exploration](slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.html)
+- [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/02-wordnet/wordnet.py.md)
+  [Slides Réseaux lexicaux](slides/02-wordnet/wordnet.py.html)
+
 
 ### 2021-12-06 — Graphes aléatoires
 
-- [Slides Graphes aléatoires](slides/03-random_graphs/random_graphs.py.html)
-  [![Launch in Binder
+- [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/03-random_graphs/random_graphs.py.md)
+  [Slides Graphes aléatoires](slides/03-random_graphs/random_graphs.py.html)
 
 ### 2021-12-13 – Analyseurs syntaxiques automatiques
 
@@ -55,15 +61,16 @@ est indisponible.
 
 ### 2022-01-03 — Détection de communautés
 
-- [Slides Détection de communautés](slides/05-communities/communities.py.html) [![Launch in Binder
+- [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/05-communities/communities.py.md)
+  [Slides Détection de communautés](slides/05-communities/communities.py.html)
 
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
 [Jupytext](https://github.com/mwouts/jupytext). C'est entre autres une façon d'avoir un historique
-git propre, malheureusement ça signifie que pour les ouvrir en local, il faut installer les
-extensions adéquates. Le plus simple est le suivant
+git propre, mais malheureusement ça signifie que pour les ouvrir en local, il faut installer les
+extensions adéquates. Le plus simple est de procéder ainsi:
 
 1. Récupérez le dossier du cours, soit en téléchargeant et décompressant
    [l'archive](https://github.com/LoicGrobol/structured-data/archive/refs/heads/main.zip)
