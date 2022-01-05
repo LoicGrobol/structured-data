@@ -58,6 +58,9 @@ est indisponible.
 ### 2021-12-13 – Analyseurs syntaxiques automatiques
 
 - [Slides parsers](pdf_slides/04-parsing.pdf)
+- [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/04-parsing/oracle.py.md)
+  [Notebook oracles](slides/04-parsing/oracle.py.html)
 
 ### 2022-01-03 — Détection de communautés
 

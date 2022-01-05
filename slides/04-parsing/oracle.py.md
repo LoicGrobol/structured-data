@@ -72,26 +72,29 @@ from dataclasses import dataclass
 class Node:
     identifier: int
     form: str
-    # On pourrait aussi utiliser `Optional[int]` mais je trouve ceci plus lisible
-    head: Union[int, None]
+    head: int
 
 
 def buffer_from_dict(d):
+    # On gère les multiword tokens qu'on repère parce que
+    # leur tête est `"None"`, oui, oui, la chaine de caractères,
+    # par l'objet `None`
+    words_with_heads = [
+        (w, int(h))
+        for w, h in zip(d["tokens"], d["head"])
+        if h != "None"
+    ]
     return [
         Node(
             identifier=i,
             form=w,
             head=h,
         )
-        for i, (w, h) in enumerate(
-            zip(
-                ["ROOT", *d["tokens"]],
-                [None, *(int(h) for h in d["head"])],
-            )
-        )
+        
+        for i, (w, h) in enumerate([("ROOT", 0), *words_with_heads])
     ]
 
-buffer_from_dict(train_dataset[5])
+buffer_from_dict(train_dataset[6])
 ```
 
 Un oracle pour le système de transition *arc-standard* ([Nivre, 2004](https://aclanthology.org/W04-0308))) :
@@ -153,30 +156,49 @@ def arc_eager_oracle(buffer: List[Node]) -> List[str]:
     for node in buffer[:-1]:
         if node.identifier < node.head:
             has_left_dependents.add(node.head)
+            
+    # Nécessaire uniquement si on a pas de garantie que l'arbre soit
+    # projectif
+    has_head = {node.identifier: False for node in buffer[:-1]}
 
     while buffer:
         print([t.form for t in stack], [t.form for t in reversed(buffer)], sep="\t")
         stack_top = stack[-1]
         buffer_top = buffer[-1]
         if stack_top.head == buffer_top.identifier:
+            # Superflu mais agréable
+            has_head[stack_top.identifier] = True
             yield "LEFT-ARC"
             stack.pop()
         elif stack_top.identifier == buffer_top.head:
             yield "RIGHT-ARC"
+            has_head[buffer_top.identifier] = True
             stack.append(buffer.pop())
-        # Trick galaxy brain de la projectivité
+        # Trick galaxy brain de la projectivité: si on a `… A B …`
+        # avec un arc qui part de ou qui arrive à B, alors A ne
+        # peut pas avoir d'arc qui le relie à un truc à droite.
+        # Donc la tête de A est à sa gauche (ce n'est pas B sinon
+        # on aurait left-arc), donc on l'a déjà trouvée (et c'est même
+        # le nœud juste en dessous).
         elif buffer_top.identifier in has_left_dependents:
+            if not has_head[stack_top.identifier]:
+                raise ValueError("Non-projective tree")
             yield "REDUCE"
             stack.pop()
         else:
             yield "SHIFT"
             stack.append(buffer.pop())
-    if len(buffer) > 1:
-        raise ValueError("Non-projective tree")
+    while len(stack) > 1:
+        print([t.form for t in stack], [t.form for t in reversed(buffer)], sep="\t")
+        # On pourrait pop ici mais c'est sale
+        if not has_head[stack[-1].identifier]:
+            raise ValueError("Non-projective tree")
+        yield "REDUCE"
+        stack.pop()
 
-list(arc_eager_oracle(buffer_from_dict(train_dataset[6])))
+list(arc_eager_oracle(buffer_from_dict(train_dataset[5])))
 ```
 
 ```python
-train_dataset[6]
+list(arc_eager_oracle(buffer_from_dict(train_dataset[6])))
 ```
