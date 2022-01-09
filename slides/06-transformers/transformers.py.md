@@ -177,7 +177,7 @@ tokenizer.convert_ids_to_tokens(tokenized_sent["input_ids"])
 ```
 
 ```python
-tokenizer(raw_datasets["train"]["sentence"])
+tokenizer(raw_datasets["train"]["sentence"])[:8]
 ```
 
 ```python
