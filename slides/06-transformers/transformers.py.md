@@ -312,7 +312,7 @@ C'est une bonne pratique de sauvegarder le tokenizer avec.
 tokenizer.save_pretrained("local/distilbert-base-multilingual-cased+sst2/model")
 ```
 
-Et pour rendre votre modèle facilement réutilisable, vous pouvez le mettre sur [le hub](https://huggingface.co/docs/hub). Il y a aussi des intégrations pour le faire directement dans le `Trainer`, voir [la doc](https://huggingface.co/docs/transformers/v4.15.0/en/main_classes/trainer#transformers.TrainingArguments.push_to_hub).
+Et pour rendre votre modèle facilement réutilisable, vous pouvez le mettre sur [le hub](https://huggingface.co/docs/hub). Il y a aussi des intégrations pour le faire directement dans le `Trainer`, voir [la doc](https://huggingface.co/docs/transformers/v4.15.0/en/main_classes/trainer#transformers.Trainer.push_to_hub).
 
 ### Évaluation
 
@@ -391,4 +391,102 @@ tensorboard serve --logdir slides/06-transformers/local/distilbert-base-multilin
 
 Affinez un modèle (pour un nombre raisonnable de pas) en français ou multilingue sur la tâche de détection de polarité du benchmark [FLUE](https://huggingface.co/datasets/flue#text-classification-cls) ([Le et al, 2020](https://hal.archives-ouvertes.fr/hal-02890258)).
 
+```python
+del classifier
+del sentiment_pipeline
+```
+
 ## Préentraîner un modèle
+
+```python
+tokenizer = transformers.AutoTokenizer.from_pretrained("distilbert-base-multilingual-cased")
+tokenizer
+```
+
+```python
+model_config = transformers.AutoConfig.from_pretrained("distilbert-base-multilingual-cased")
+```
+
+```python
+model = transformers.AutoModelForMaskedLM.from_config(model_config)
+```
+
+```python
+lm = transformers.pipeline("fill-mask", model=model, tokenizer=tokenizer)
+```
+
+```python
+lm(f"En France, c'est l'Université de {lm.tokenizer.mask_token} la meilleure.")
+```
+
+```python
+!mkdir -p local
+!wget "https://sharedocs.huma-num.fr/wl/?id=LLYeokePZiJytROQ41iI3fkss6lMmGwd&fmode=download" -O local/ESLO_raw.txt
+```
+
+```python
+!head local/ESLO_raw.txt
+```
+
+```python
+raw_dataset = datasets.load_dataset("text", data_files=["local/ESLO_raw.txt"])
+raw_dataset
+```
+
+```python
+def tokenize_function(examples):
+    result = tokenizer(examples["text"], truncation=True)
+    return result
+
+tokenized_dataset = raw_dataset.map(
+    tokenize_function, batched=True
+)
+tokenized_dataset
+```
+
+```python
+data_collator = transformers.DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm_probability=0.15)
+```
+
+```python
+tokenized_dataset["train"][0]
+```
+
+```python
+samples = [tokenized_dataset["train"][i] for i in range(8)]
+
+for chunk in data_collator(samples)["input_ids"]:
+    print(f"\n'>>> {tokenizer.decode(chunk)}'")
+```
+
+```python
+training_args = transformers.TrainingArguments(
+    gradient_accumulation_steps=2,
+    learning_rate=2e-5,
+    logging_steps=2,
+    max_steps=16,
+    output_dir=f"local/distilbert-ESLO",
+    per_device_train_batch_size=4,
+    per_device_eval_batch_size=4,
+    report_to="tensorboard",
+    warmup_ratio=1/8,
+    weight_decay=0.01,
+)
+
+trainer = transformers.Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_dataset["train"],
+    data_collator=data_collator,
+)
+
+trainer.train()
+```
+
+## Entraîner des tokenizers
+
+## Autres outils
+
+- Pytorch Lightning et [Lightning Transformers](https://lightning-transformers.readthedocs.io/en/latest/)
+- [`simpletransformers`](https://simpletransformers.ai)
+- [Zelda Rose](https://github.com/LoicGrobol/zeldarose)
