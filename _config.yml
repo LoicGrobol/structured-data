@@ -13,7 +13,7 @@ atom_feed:
 
 exclude:
   - "*.py.md"
-  - "local/"
+  - "**/local"
 
 keep_files:
   - "*.py.html"

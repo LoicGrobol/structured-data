@@ -42,6 +42,14 @@ Autres éléments magiques :
   `--minimize=False` qui [accélère un
   peu](https://github.com/jupyterlab/jupyterlab/issues/4824#issuecomment-697188390))
 
+## Générer le site
+
+```console
+gem install jekyll bundler
+bundle exec jekyll build
+bundle exec jekyll serve
+```
+
 ## Licences
 
 [![CC BY Licence badge](https://i.creativecommons.org/l/by/4.0/88x31.png)](http://creativecommons.org/licenses/by/4.0/)
