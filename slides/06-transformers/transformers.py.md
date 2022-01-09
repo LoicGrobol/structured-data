@@ -50,7 +50,7 @@ import transformers
 ### Charger et utiliser des modèles
 
 
-On va utiliser DistilBERT, une version de BERT compressée par distillation. Elle a l'avantage d'être considérablement plus légère (donc gentille avec les notebooks), tout en étant presque aussi performante.
+On va utiliser DistilBERT ([Sahn et al, 2019](https://arxiv.org/abs/1910.01108)), une version de BERT compressée par distillation. Elle a l'avantage d'être considérablement plus légère (donc gentille avec les notebooks), tout en étant presque aussi performante.
 
 ```python
 bert_model = transformers.AutoModel.from_pretrained("distilbert-base-multilingual-cased")
@@ -126,7 +126,9 @@ Attention : tous les modèles n'ont pas étés affinés pour toutes les pipeli
 
 Et s'il n'y en a pas ? On peut en entraîner un !
 
-### Affiner un modèle
+## Affiner un modèle
+
+### Données
 
 
 On va utiliser une des tâches du multi-benchmark [GLUE](https://gluebenchmark.com), dans sa version [🤗 datasets](https://huggingface.co/datasets/glue).
@@ -158,6 +160,8 @@ raw_train_dataset[16:32]
 ```python
 raw_train_dataset["sentence"][9]
 ```
+
+### Tokenization
 
 ```python
 tokenizer = transformers.AutoTokenizer.from_pretrained("distilbert-base-multilingual-cased")
@@ -218,6 +222,8 @@ batch = data_collator(samples)
 {k: v.shape for k, v in batch.items()}
 ```
 
+### Affinage
+
 ```python
 classifier = transformers.AutoModelForSequenceClassification.from_pretrained(
     "distilbert-base-multilingual-cased", num_labels=2
@@ -226,11 +232,16 @@ classifier
 ```
 
 ```python
+sentiment_pipeline = transformers.pipeline("sentiment-analysis", model=classifier, tokenizer=tokenizer)
+sentiment_pipeline("This movie is not so bad")
+```
+
+```python
 training_args = transformers.TrainingArguments(
     gradient_accumulation_steps=2,
     logging_steps=8,
     max_steps=64,
-    output_dir="local/distilbert-base-mutlitlingual-cased+sst2",
+    output_dir="local/distilbert-base-multilingual-cased+sst2",
     per_device_train_batch_size=4,
     report_to="none",
     warmup_ratio=1/16,
@@ -242,7 +253,6 @@ trainer = transformers.Trainer(
     classifier,
     training_args,
     train_dataset=tokenized_datasets["train"],
-    eval_dataset=tokenized_datasets["validation"],
     data_collator=data_collator,
     tokenizer=tokenizer,
 )
@@ -251,3 +261,134 @@ trainer = transformers.Trainer(
 ```python
 trainer.train()
 ```
+
+### Utiliser le modèle entraîné
+
+
+Les paramètres du modèle ont été directement modifiés et on peut l'utiliser tout de suite.
+
+
+Bien penser à mettre le modèle en mode évaluation, sinon les résultats seront partiellement aléatoires
+
+```python
+classifier.eval()
+```
+
+On peut s'en servir pour faire des prédictions directement
+
+```python
+with torch.no_grad():
+    classifier_output = classifier(**tokenizer("This movie is not so bad", return_tensors="pt"))
+    display(classifier_output)
+```
+
+On peut aussi l'utiliser dans la pipeline
+
+```python
+sentiment_pipeline("This movie is not so bad")
+```
+
+Le score pour la pipeline et le logit correspondant en appliquant directement le modèle sont différent, c'est parce que la pipeline applique un softmax :
+
+```python
+classifier_output.logits.softmax(dim=-1)
+```
+
+Si on veut utiliser le modèle affiné ailleurs, il faut le sauvegarder
+
+```python
+classifier.save_pretrained("local/distilbert-base-multilingual-cased+sst2/model")
+```
+
+On peut alors le charger avec le `.from_pretrained("local/distilbert-base-multilingual-cased+sst2/model")` qui va bien, par exemple.
+
+```python
+classifier = transformers.AutoModelForSequenceClassification.from_pretrained("local/distilbert-base-multilingual-cased+sst2/model")
+```
+
+C'est une bonne pratique de sauvegarder le tokenizer avec.
+
+```python
+tokenizer.save_pretrained("local/distilbert-base-multilingual-cased+sst2/model")
+```
+
+Et pour rendre votre modèle facilement réutilisable, vous pouvez le mettre sur [le hub](https://huggingface.co/docs/hub). Il y a aussi des intégrations pour le faire directement dans le `Trainer`, voir [la doc](https://huggingface.co/docs/transformers/v4.15.0/en/main_classes/trainer#transformers.TrainingArguments.push_to_hub).
+
+### Évaluation
+
+```python
+predictions = trainer.predict(tokenized_datasets["validation"])
+print(type(predictions.predictions), predictions.predictions.shape, predictions.label_ids.shape)
+```
+
+```python
+predicted_labels = predictions.predictions.argmax(axis=-1)
+predicted_labels
+```
+
+```python
+predicted_labels == predictions.label_ids
+```
+
+```python
+(predicted_labels == predictions.label_ids).sum()/predicted_labels.shape[0]
+```
+
+```python
+metric = datasets.load_metric("glue", "sst2")
+metric.compute(predictions=predicted_labels, references=predictions.label_ids)
+```
+
+```python
+def compute_metrics(eval_preds):
+    metric = datasets.load_metric("glue", "sst2")
+    logits, labels = eval_preds
+    predictions = logits.argmax(axis=-1)
+    return metric.compute(predictions=predictions, references=labels)
+```
+
+```python
+# On régénère le classifieur pour reprendre l'entraînement de zéro
+
+classifier = transformers.AutoModelForSequenceClassification.from_pretrained(
+    "distilbert-base-multilingual-cased", num_labels=2
+)
+
+training_args = transformers.TrainingArguments(
+    evaluation_strategy="steps",
+    eval_steps=16,
+    gradient_accumulation_steps=2,
+    logging_steps=8,
+    max_steps=64,
+    output_dir="local/distilbert-base-mutlitlingual-cased+sst2",
+    per_device_train_batch_size=4,
+    report_to="tensorboard",
+    warmup_ratio=1/16,
+)
+
+trainer = transformers.Trainer(
+    args=training_args,    
+    compute_metrics=compute_metrics,
+    data_collator=data_collator,
+    eval_dataset=tokenized_datasets["validation"],
+    model=classifier,
+    tokenizer=tokenizer,
+    train_dataset=tokenized_datasets["train"],   
+    
+)
+
+trainer.train()
+```
+
+Vous pouvez voir l'évolution de l'entraînement dans [`tensorboard`](https://www.tensorflow.org/tensorboard)
+
+
+```console
+tensorboard serve --logdir slides/06-transformers/local/distilbert-base-multilingual-cased+sst2
+```
+
+### À vous de jouer
+
+Affinez un modèle (pour un nombre raisonnable de pas) en français ou multilingue sur la tâche de détection de polarité du benchmark [FLUE](https://huggingface.co/datasets/flue#text-classification-cls) ([Le et al, 2020](https://hal.archives-ouvertes.fr/hal-02890258)).
+
+## Préentraîner un modèle
