@@ -68,6 +68,12 @@ est indisponible.
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/05-communities/communities.py.md)
   [Slides Détection de communautés](slides/05-communities/communities.py.html)
 
+### 2022-01-10 — *Transformers*, principes et usages
+
+- [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/06-transformers/transformers.py.md)
+  [Slides Transformers](slides/06-transformers/transformers.py.html)
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
