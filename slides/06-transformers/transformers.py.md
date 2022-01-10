@@ -28,11 +28,23 @@ jupyter:
 
 ## Prologue : encodeurs-décodeurs et traduction automatique
 
+
+Références : Sutskever et al ([2014](https://proceedings.neurips.cc/paper/2014/file/a14ac55a4f27472c5d894ec1c3c743d2-Paper.pdf)) et Cho et al ([2014](http://aclweb.org/anthology/D14-1179)).
+
 ## Mécanisme d'attention
+
+
+Référence : Badhanau et al ([2015](http://arxiv.org/abs/1409.0473))
 
 ## *Attention is all you need*
 
+
+Référence : Vaswani et al. ([2017](https://proceedings.neurips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf))
+
 ## Préentraînement et *fine-tuning*
+
+
+Références : Peters et al. ([2018](http://aclweb.org/anthology/N18-1202)), Radford et al. ([2018](https://openai.com/blog/language-unsupervised)) Howard et Ruder ([2018](https://www.aclweb.org/anthology/P18-1031)), Devlin et al. ([2019](https://www.aclweb.org/anthology/N19-1423)).
 
 ## 🤗 `transformers`
 
@@ -485,8 +497,46 @@ trainer.train()
 
 ## Entraîner des tokenizers
 
+```python
+# speech_tokenizer = tokenizer.train_new_from_iterator(raw_dataset["train"], 8192)
+```
+
+```python
+tokenizer.tokenize("Je reconnais l'existence du kiwi")
+```
+
+```python
+# speech_tokenizer.tokenize("Je reconnais l'existence du kiwi")
+```
+
 ## Autres outils
 
 - Pytorch Lightning et [Lightning Transformers](https://lightning-transformers.readthedocs.io/en/latest/)
 - [`simpletransformers`](https://simpletransformers.ai)
 - [Zelda Rose](https://github.com/LoicGrobol/zeldarose)
+
+## Biais et limitations
+
+```python
+unmasker = transformers.pipeline("fill-mask", model="bert-base-cased")
+result = unmasker("This man works as a [MASK].")
+print([r["token_str"] for r in result])
+
+result = unmasker("This woman works as a [MASK].")
+print([r["token_str"] for r in result])
+                                 
+result = unmasker("This person works as a [MASK].")
+print([r["token_str"] for r in result])
+```
+
+```python
+unmasker = transformers.pipeline("fill-mask", model="distilbert-base-multilingual-cased")
+result = unmasker("This man works as a [MASK].")
+print([r["token_str"] for r in result])
+
+result = unmasker("This woman works as a [MASK].")
+print([r["token_str"] for r in result])
+                                 
+result = unmasker("This person works as a [MASK].")
+print([r["token_str"] for r in result])
+```
