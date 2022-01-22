@@ -1,6 +1,5 @@
 conllu
 datasets
-gensim
 ipycytoscape
 ipympl
 jupyterlab
@@ -9,10 +8,9 @@ nbconvert
 networkx
 numpy
 matplotlib
-pandas
 regex
 seaborn
-scikit-learn
+stanza
 tensorboard
 tol-colors
 torch
