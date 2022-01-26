@@ -78,7 +78,7 @@ est indisponible.
 
 - [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/07-coreference/coreference.py.md)
-  [Slides Transformers](slides/07-coreference/coreference.py.html)
+  [Slides Coréférence](slides/07-coreference/coreference.py.html)
 
 
 ## Lire les slides en local
