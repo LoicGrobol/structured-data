@@ -74,6 +74,13 @@ est indisponible.
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/06-transformers/transformers.py.md)
   [Slides Transformers](slides/06-transformers/transformers.py.html)
 
+### 2022-01-26 — Coréférence
+
+- [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/07-coreference/coreference.py.md)
+  [Slides Transformers](slides/07-coreference/coreference.py.html)
+
+
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
