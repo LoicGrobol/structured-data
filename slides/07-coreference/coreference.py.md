@@ -28,7 +28,7 @@ jupyter:
 
 ## Définitions générales
 
-> **Sam Vimaire** soupira quand il entendit **le** cri.
+> **Sam Vimaire** soupira quand **il** entendit le cri.
 
 ---
 
@@ -52,7 +52,7 @@ espace discursif.
   - > **La pomme** est un fruit et **c'**est délicieux.
   - > « […] faut que je le note, d’ailleurs vous me **le** faites rappeler »
 - Pas forcément du monde réel :
-  - > **Morgan** a vu une licorne. **Elle** avait une crinière dorée
+  - > Morgan a vu **une licorne**. **Elle** avait une crinière dorée
   - > Si j'avais **une voiture**, **elle** serait indigo.
 - Même pas forcément possibles :
   - > **Un triangle à quatre côtés**, c'est quelque chose d'incroyable
@@ -104,14 +104,14 @@ En anglais :
 
 - MUC
 - ACE
-- OntoNotes/SemEval/CoNLL-201{1,2} (techiquement multilingue)
+- OntoNotes/SemEval/CoNLL-201{1,2} (techniquement multilingue)
 
 En français
 
 - ANCOR
 - DEMOCRAT
 
-Multilingues : Universal Anaphora / [CorefUF](https://ufal.mff.cuni.cz/corefud)
+Multilingues : Universal Anaphora / [CorefUD](https://ufal.mff.cuni.cz/corefud)
 
 ## Techniques de traitement
 
@@ -172,7 +172,7 @@ with CoreNLPClient(
     endpoint="http://localhost:9001",
     be_quiet=True,
 ) as client:
-    text = "Albert Einstein was a German-born theoretical physicist. He was not a nice man."
+    text = "Beethoven’s first music teacher was his father. Although tradition has it that Johann van Beethoven was a harsh instructor, and that the child Beethoven, “made to stand at the keyboard, was often in tears”, the Grove Dictionary of Music and Musicians claimed that no solid documentation supported this."
     document = client.annotate(text)
 ```
 
