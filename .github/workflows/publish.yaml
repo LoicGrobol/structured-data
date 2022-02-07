@@ -69,17 +69,17 @@ jobs:
           jupytext --to ipynb ${{ github.workspace }}/exams/**/*.py.md
           jupyter nbconvert --execute --allow-errors --to html ${{ github.workspace }}/exams/**/*.py.ipynb
       
-      - name: Build LaTeX slides
-        uses: xu-cheng/latex-action@v2
-        with:
-          root_file: |
-            slides/04-parsing/latex_slides/pres.tex
-          args: "-lualatex -cd -file-line-error -halt-on-error -interaction=nonstopmode"
+      # - name: Build LaTeX slides
+      #   uses: xu-cheng/latex-action@v2
+      #   with:
+      #     root_file: |
+      #       slides/04-parsing/latex_slides/pres.tex
+      #     args: "-lualatex -cd -file-line-error -halt-on-error -interaction=nonstopmode"
       
-      - name: Move generated pdfs to build dir
-        run: |
-          mkdir pdf_slides
-          cp slides/04-parsing/latex_slides/pres.pdf pdf_slides/04-parsing.pdf
+      # - name: Move generated pdfs to build dir
+      #   run: |
+      #     mkdir pdf_slides
+      #     cp slides/04-parsing/latex_slides/pres.pdf pdf_slides/04-parsing.pdf
       
       - name: Get node cache
         uses: actions/cache@v2
