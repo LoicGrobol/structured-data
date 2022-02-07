@@ -105,16 +105,17 @@ from collections import Counter
 
 def arc_standard_oracle(buffer: List[Node]) -> Iterable[str]:
     # On copie le buffer pour ne pas le détruire et on le retourne pour
-    # avec `pop` optimalement
+    # pouvoir   `pop`er optimalement
+    # On pourrait aussi écrire `list(reversed(buffer))`
     buffer = buffer[::-1]
     # Comme d'habitude, une liste c'est une pile, on commence avec la racine
     # dessus
     stack = [buffer.pop()]
     # Pour ne pas réduire un nœud avant d'avoir trouvé tous ses dépendants,
-    # on les compte (et on ignore la racine). (On pourrait utiliser un générateur
+    # on les compte (On pourrait utiliser un générateur
     # plutôt qu'une boucle)
     remaining_dependents = Counter()
-    for node in buffer[:-1]:
+    for node in buffer:
         remaining_dependents[node.head] += 1
 
     while buffer or stack:
@@ -175,8 +176,9 @@ def arc_eager_oracle(buffer: List[Node]) -> List[str]:
             has_head[buffer_top.identifier] = True
             stack.append(buffer.pop())
         # Trick galaxy brain de la projectivité: si on a `… A B …`
-        # avec un arc qui part de ou qui arrive à B, alors A ne
-        # peut pas avoir d'arc qui le relie à un truc à droite.
+        # avec un arc qui part de ou qui arrive à B et dont l'autre
+        # extrémité est à gauche de A, alors A nepeut pas avoir d'arc
+        # qui le relie à un truc à droite.
         # Donc la tête de A est à sa gauche (ce n'est pas B sinon
         # on aurait left-arc), donc on l'a déjà trouvée (et c'est même
         # le nœud juste en dessous).
