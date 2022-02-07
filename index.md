@@ -87,6 +87,9 @@ Vous *pouvez* travailler dans Binder, mais attention à faire en sorte de ne pas
 - [![Launch in Binder
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/exams/2022/exam-2022.py.md)
   [Sujet partiel](exams/2022/exam-2022.py.html)
+- [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/exams/2022/exam-2022-solutions.py.md)
+  [Solutions](exams/2022/exam-2022-solutions.py.html)
 
 ## Lire les slides en local
 
