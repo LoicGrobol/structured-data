@@ -80,13 +80,20 @@ est indisponible.
   badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/07-coreference/coreference.py.md)
   [Slides Coréférence](slides/07-coreference/coreference.py.html)
 
+### 2022-02-07 — Partiel
+
+Vous *pouvez* travailler dans Binder, mais attention à faire en sorte de ne pas perdre votre travail
+
+- [![Launch in Binder
+  badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/exams/2022/exam-2022.py.md)
+  [Sujet partiel](exams/2022/exam-2022.py.html)
 
 ## Lire les slides en local
 
 Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
 [Jupytext](https://github.com/mwouts/jupytext). C'est entre autres une façon d'avoir un historique
 git propre, mais malheureusement ça signifie que pour les ouvrir en local, il faut installer les
-extensions adéquates. Le plus simple est de procéder ainsi:
+extensions adéquates. Le plus simple est de procéder ainsi :
 
 1. Récupérez le dossier du cours, soit en téléchargeant et décompressant
    [l'archive](https://github.com/LoicGrobol/structured-data/archive/refs/heads/main.zip)

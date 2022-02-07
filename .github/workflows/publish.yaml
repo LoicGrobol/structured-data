@@ -64,6 +64,11 @@ jobs:
           jupyter nbconvert --execute --allow-errors --to html ${{ github.workspace }}/slides/**/*.py.ipynb
           jupyter nbconvert --to slides ${{ github.workspace }}/slides/**/*-slides.py.ipynb
       
+      - name: Build extra notebooks
+        run: |
+          jupytext --to ipynb ${{ github.workspace }}/exams/**/*.py.md
+          jupyter nbconvert --execute --allow-errors --to html ${{ github.workspace }}/exams/**/*.py.ipynb
+      
       - name: Build LaTeX slides
         uses: xu-cheng/latex-action@v2
         with:
