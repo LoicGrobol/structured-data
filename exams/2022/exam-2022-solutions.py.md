@@ -320,7 +320,7 @@ et $a⩽c$, ce qu'on peut faire sans perte de généralité, puisque :
 Or dans ce cas, la seule possibilité pour que les arcs se croisent, c'est si $a<b<c<d$, puisque
 
 - Si $a=c$ ou $b=d$, il n'y a pas de croisement.
-- Idem si $b⩽c$.
+- Idem si $b≥c$.
 
 ```python
 def crossing(arc_1: Tuple[int, int], arc_2: Tuple[int, int]) -> bool:
