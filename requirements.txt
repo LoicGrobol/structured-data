@@ -1,0 +1,17 @@
+conllu
+datasets
+ipycytoscape
+ipympl
+jupyterlab
+jupytext
+nbconvert
+networkx
+numpy
+matplotlib
+regex
+seaborn
+stanza
+tensorboard
+tol-colors
+torch
+RISE
