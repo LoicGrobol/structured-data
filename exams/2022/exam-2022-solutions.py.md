@@ -7,7 +7,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.3'
-      jupytext_version: 1.13.6
+      jupytext_version: 1.13.7
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -176,12 +176,12 @@ with open("fr_sequoia-sud-train.conllu") as in_stream:
 ```python
 longest_sent_len = max(
     sum(1 for t in s if t["head"] is not None)
-    for s in sud_sentence
+    for s in sud_sentences
 )
 ```
 
 ```python
-print(len(sud_sentences), longest_sent, sep="|")
+print(len(sud_sentences), longest_sent_len, sep="|")
 ```
 
 ## Interlude : un dict pour se rendre la vie facile
