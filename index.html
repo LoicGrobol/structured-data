@@ -1,0 +1,399 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Informations et cours - Données structurées — M2 PluriTAL</title>
+<meta name="description" content="Contenus pour le cours « Documents structurés et écriture numérique » du master Plurital.">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Données structurées — M2 PluriTAL">
+<meta property="og:title" content="Informations et cours">
+<meta property="og:url" content="/structured-data/">
+
+
+  <meta property="og:description" content="Contenus pour le cours « Documents structurés et écriture numérique » du master Plurital.">
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="canonical" href="/structured-data/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Loïc Grobol",
+      "url": "/structured-data/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/structured-data/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--home">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/structured-data/">
+          Données structurées — M2 PluriTAL
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+
+  <div class="archive">
+    
+      <h1 id="page-title" class="page__title">Informations et cours</h1>
+    
+    
+<h2 id="nouvelles">Nouvelles</h2>
+
+<ul>
+  <li><strong>2022-01-04</strong>, le cours du 17/01 est reporté au mercredi 26/01, même heure, même salle</li>
+</ul>
+
+<h2 id="infos-pratiques">Infos pratiques</h2>
+
+<ul>
+  <li><strong>Quoi</strong> « Données structurées »</li>
+  <li><strong>Où</strong> Salle 219, bâtiment Paul Ricœur, Université Paris Nanterre, 200 avenue de la République,
+Nanterre</li>
+  <li><strong>Quand</strong> 8 séances, les lundis de 13:30 à 16:30, du 29/11 au 24/01
+    <ul>
+      <li>Voir <a href="http://www.tal.univ-paris3.fr/plurital/admin/Calendrier_M2_TAL_PX_2021_22.xlsx">le
+planning</a> pour
+les dates exactes</li>
+    </ul>
+  </li>
+  <li><strong>Contact</strong> Loïc Grobol <a href="mailto:lgrobol@parisnanterre.fr"><code class="language-plaintext highlighter-rouge">&lt;lgrobol@parisnanterre.fr&gt;</code></a></li>
+</ul>
+
+<h2 id="séances">Séances</h2>
+
+<p>Tous les supports sont sur <a href="https://github.com/loicgrobol/structured-data">github</a>, voir
+<a href="#utilisation-en-local">Utilisation en local</a> pour les utiliser sur votre machine comme des
+notebooks. À défaut, ce sont des fichiers Markdown assez standards, qui devraient se visualiser
+correctement sur la plupart des plateformes (mais ne seront pas dynamiques).</p>
+
+<p>Les slides et les notebooks ci-dessous ont tous des liens Binder pour une utilisation interactive
+sans rien installer. Les slides ont aussi des liens vers une version HTML statique utile si Binder
+est indisponible.</p>
+
+<h3 id="2021-11-20--graphes-et-algorithmes-dexploration">2021-11-20 — Graphes et algorithmes d’exploration</h3>
+
+<ul>
+  <li><a href="https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.md"><img src="https://mybinder.org/badge_logo.svg" alt="Launch in Binder
+badge" /></a>
+<a href="slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.html">Slides Graphes et algorithmes
+d’exploration</a></li>
+</ul>
+
+<h3 id="2021-12-01--graphes-particuliers-et-réseaux-lexicaux">2021-12-01 — Graphes particuliers et réseaux lexicaux</h3>
+
+<ul>
+  <li><a href="https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.md"><img src="https://mybinder.org/badge_logo.svg" alt="Launch in Binder
+badge" /></a>
+<a href="slides/01-graphs_and_traversing_algorithms/graphs_and_search_algorithms-slides.py.html">Slides Graphes et algorithmes
+d’exploration</a></li>
+  <li><a href="https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/02-wordnet/wordnet.py.md"><img src="https://mybinder.org/badge_logo.svg" alt="Launch in Binder
+badge" /></a>
+<a href="slides/02-wordnet/wordnet.py.html">Slides Réseaux lexicaux</a></li>
+</ul>
+
+<h3 id="2021-12-06--graphes-aléatoires">2021-12-06 — Graphes aléatoires</h3>
+
+<ul>
+  <li><a href="https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/03-random_graphs/random_graphs.py.md"><img src="https://mybinder.org/badge_logo.svg" alt="Launch in Binder
+badge" /></a>
+<a href="slides/03-random_graphs/random_graphs.py.html">Slides Graphes aléatoires</a></li>
+</ul>
+
+<h3 id="2021-12-13--analyseurs-syntaxiques-automatiques">2021-12-13 – Analyseurs syntaxiques automatiques</h3>
+
+<ul>
+  <li><a href="pdf_slides/04-parsing.pdf">Slides parsers</a></li>
+  <li><a href="https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/04-parsing/oracle.py.md"><img src="https://mybinder.org/badge_logo.svg" alt="Launch in Binder
+badge" /></a>
+<a href="slides/04-parsing/oracle.py.html">Notebook oracles</a></li>
+</ul>
+
+<h3 id="2022-01-03--détection-de-communautés">2022-01-03 — Détection de communautés</h3>
+
+<ul>
+  <li><a href="https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/05-communities/communities.py.md"><img src="https://mybinder.org/badge_logo.svg" alt="Launch in Binder
+badge" /></a>
+<a href="slides/05-communities/communities.py.html">Slides Détection de communautés</a></li>
+</ul>
+
+<h3 id="2022-01-10--transformers-principes-et-usages">2022-01-10 — <em>Transformers</em>, principes et usages</h3>
+
+<ul>
+  <li><a href="https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/06-transformers/transformers.py.md"><img src="https://mybinder.org/badge_logo.svg" alt="Launch in Binder
+badge" /></a>
+<a href="slides/06-transformers/transformers.py.html">Slides Transformers</a></li>
+</ul>
+
+<h3 id="2022-01-26--coréférence">2022-01-26 — Coréférence</h3>
+
+<ul>
+  <li><a href="https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/slides/07-coreference/coreference.py.md"><img src="https://mybinder.org/badge_logo.svg" alt="Launch in Binder
+badge" /></a>
+<a href="slides/07-coreference/coreference.py.html">Slides Coréférence</a></li>
+</ul>
+
+<h3 id="2022-02-07--partiel">2022-02-07 — Partiel</h3>
+
+<p>Vous <em>pouvez</em> travailler dans Binder, mais attention à faire en sorte de ne pas perdre votre travail</p>
+
+<ul>
+  <li><a href="https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/exams/2022/exam-2022.py.md"><img src="https://mybinder.org/badge_logo.svg" alt="Launch in Binder
+badge" /></a>
+<a href="exams/2022/exam-2022.py.html">Sujet partiel</a></li>
+  <li><a href="https://mybinder.org/v2/gh/loicgrobol/structured-data/main?urlpath=tree/exams/2022/exam-2022-solutions.py.md"><img src="https://mybinder.org/badge_logo.svg" alt="Launch in Binder
+badge" /></a>
+<a href="exams/2022/exam-2022-solutions.py.html">Solutions</a></li>
+</ul>
+
+<h2 id="lire-les-slides-en-local">Lire les slides en local</h2>
+
+<p>Les supports de ce cours sont écrits en Markdown, convertis en notebooks avec
+<a href="https://github.com/mwouts/jupytext">Jupytext</a>. C’est entre autres une façon d’avoir un historique
+git propre, mais malheureusement ça signifie que pour les ouvrir en local, il faut installer les
+extensions adéquates. Le plus simple est de procéder ainsi :</p>
+
+<ol>
+  <li>Récupérez le dossier du cours, soit en téléchargeant et décompressant
+<a href="https://github.com/LoicGrobol/structured-data/archive/refs/heads/main.zip">l’archive</a>
+soit en le clonant avec git : <code class="language-plaintext highlighter-rouge">git clone
+https://github.com/LoicGrobol/structured-data.git</code> et placez-vous dans ce dossier.</li>
+  <li>
+    <p>Créez un environnement virtuel pour le cours</p>
+
+    <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">python3 -m virtualenv .venv
+source .venv/bin/activate
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Installez les dépendances</p>
+
+    <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">pip install -U -r requirements.txt
+</span></code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Lancez Jupyter</p>
+
+    <div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">jupyter notebook
+</span></code></pre></div>    </div>
+
+    <p>JupyterLab est aussi utilisable, mais la fonctionnalité slide n’y fonctionne pas pour l’instant.</p>
+  </li>
+</ol>
+
+<h2 id="ressources">Ressources</h2>
+
+<h3 id="python-général">Python général</h3>
+
+<p>Il y a beaucoup, beaucoup de ressources disponibles pour apprendre Python. Ce qui suit n’est qu’une sélection.</p>
+
+<h4 id="livres">Livres</h4>
+
+<ul>
+  <li><em>How to think like a computer scientist</em>, Jeffrey Elkner, Allen B. Downey, et Chris Meyers. Vous
+pouvez l’acheter. Vous pouvez aussi le lire
+<a href="http://openbookproject.net/thinkcs/python/english3e/">ici</a></li>
+  <li><em>Dive into Python</em>, Mark Pilgrim. <a href="http://www.diveintopython3.net/">Ici</a> vous pouvez le lire ou
+télécharger le pdf.</li>
+  <li><em>Learning Python</em>, Mark Lutz.</li>
+  <li><em>Beginning Python</em>, Magnus Lie Hetland.</li>
+  <li><em>Python Algorithms: Mastering Basic Algorithms in the Python Language</em>, Magnus Lie Hetland.
+Peut-être un peu costaud pour des débutants.</li>
+  <li><em>Programmation Efficace. Les 128 Algorithmes Qu’Il Faut Avoir Compris et Codés en Python au Cours
+de sa Vie</em>, Christoph Dürr et Jill-Jênn Vie. Si le cours vous paraît trop facile. Le code Python
+est clair, les difficultés sont commentées. Les algos sont très costauds.</li>
+</ul>
+
+<h4 id="web">Web</h4>
+
+<p>Il vous est vivement conseillé d’utiliser un (ou plus) des sites et tutoriels ci-dessous.</p>
+
+<ul>
+  <li><a href="https://realpython.com">Real Python</a>, des cours et des tutoriels souvent de très bonne qualité et
+pour tous niveaux.</li>
+  <li><a href="https://www.codingame.com/home">Coding Game</a>. Vous le retrouverez dans les exercices
+hebdomadaires.</li>
+  <li><a href="https://www.codecademy.com/fr/learn/python">Code Academy</a></li>
+  <li><a href="http://newcoder.io/">newcoder.io</a>. Des projets commentés, commencer par ‘Data Visualization’</li>
+  <li><a href="https://developers.google.com/edu/python/">Google’s Python Class</a>. Guido a travaillé chez eux.
+Pas <a href="http://vignette2.wikia.nocookie.net/pixar/images/1/10/Guido.png/revision/latest?cb=20140314012724">ce
+Guido</a>,
+<a href="https://en.wikipedia.org/wiki/Guido_van_Rossum#/media/File:Guido_van_Rossum_OSCON_2006.jpg">celui-là</a></li>
+  <li><a href="https://www.fun-mooc.fr/courses/inria/41001S03/session03/about#">Mooc Python</a>. Un mooc de
+l’INRIA, carré.</li>
+  <li><a href="https://codecombat.com/">Code combat</a></li>
+</ul>
+
+<h3 id="divers">Divers</h3>
+
+<ul>
+  <li>La chaîne YouTube <a href="https://www.youtube.com/c/3blue1brown">3blue1brown</a> pour des vidéos de maths
+générales.</li>
+  <li>La chaîne YouTube de <a href="https://www.youtube.com/c/Acegikmo">Freya Holmér</a> plutôt orientée <em>game
+design</em>, mais avec d’excellentes vidéos de géométrie computationnelle.</li>
+</ul>
+
+<h2 id="licences">Licences</h2>
+
+<p><a href="http://creativecommons.org/licenses/by/4.0/"><img src="https://i.creativecommons.org/l/by/4.0/88x31.png" alt="CC BY Licence badge" /></a></p>
+
+<p>Copyright © 2021 Loïc Grobol <a href="mailto:loic.grobol@gmail.com">&lt;loic.grobol@gmail.com&gt;</a></p>
+
+<p>Sauf indication contraire, les fichiers présents dans ce dépôt sont distribués selon les termes de
+la licence <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0
+International</a>. Voir <a href="README.md#Licences">le README</a>
+pour plus de détails.</p>
+
+<p>Un résumé simplifié de cette licence est disponible à <a href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a>.</p>
+
+<p>Le texte intégral de cette licence est disponible à <a href="https://creativecommons.org/licenses/by/4.0/legalcode">https://creativecommons.org/licenses/by/4.0/legalcode</a></p>
+
+
+<h3 class="archive__subtitle">Recent Posts</h3>
+
+
+
+
+<div class="entries-list">
+  
+</div>
+
+
+
+
+  </div>
+</div>
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Loïc Grobol. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/structured-data/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
